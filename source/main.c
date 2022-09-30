@@ -44,18 +44,7 @@
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
-#define DO 1046
-#define DORE 1108
-#define RE 1174
-#define REMI 1244
-#define MI 1318
-#define FA 1396
-#define FASOL 1479
-#define SOL 1567
-#define SOLLA 1661
-#define LA 1760
-#define LASI 1864
-#define SI 1975
+
 
 #define DUTY 26
 /*
@@ -68,6 +57,10 @@ void delay(void)
 int main(void)
 {
 	uint8_t i;
+
+    FTM_pwm_init_detailed(FTM3,kFTM_Chnl_2, 1046,16);
+
+    PRINTF("Hello World\n");
     const port_pin_config_t porte7_config = {/* Internal pull-up resistor is enabled */
                                                             kPORT_PullDisable,
                                                            /* Fast slew rate is configured */
@@ -83,12 +76,6 @@ int main(void)
 														   kPORT_MuxAlt6,
                                                            /* Pin Control Register fields [15:0] are not locked */
                                                            kPORT_UnlockRegister};
-    CLOCK_EnableClock(kCLOCK_PortE);
-    PORT_SetPinConfig(PORTE, 7u, &porte7_config);
-    FTM_pwm_init_detailed(FTM3,kFTM_Chnl_2, 1046,16);
-
-    PRINTF("Hello World\n");
-
 
     while(1)
     {
