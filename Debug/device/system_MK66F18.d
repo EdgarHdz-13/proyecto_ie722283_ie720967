@@ -1,0 +1,16 @@
+device/system_MK66F18.o device/system_MK66F18.d: \
+ ../device/system_MK66F18.c ../device/fsl_device_registers.h \
+ ../device/MK66F18.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/core_cm4.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_version.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_compiler.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_gcc.h \
+ ../device/system_MK66F18.h ../device/MK66F18_features.h
+../device/fsl_device_registers.h:
+../device/MK66F18.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/core_cm4.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_version.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_compiler.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_Embebidos_2\CMSIS/cmsis_gcc.h:
+../device/system_MK66F18.h:
+../device/MK66F18_features.h:
