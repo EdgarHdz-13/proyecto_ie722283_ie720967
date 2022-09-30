@@ -266,68 +266,68 @@ Discarded input sections
  .debug_macro   0x00000000       0x7a ./source/FTM_pwm.o
  .debug_macro   0x00000000       0xaf ./source/FTM_pwm.o
  .debug_macro   0x00000000      0x190 ./source/FTM_pwm.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .group         0x00000000        0xc ./source/PWM.o
- .text          0x00000000        0x0 ./source/PWM.o
- .data          0x00000000        0x0 ./source/PWM.o
- .bss           0x00000000        0x0 ./source/PWM.o
- .debug_macro   0x00000000      0xaae ./source/PWM.o
- .debug_macro   0x00000000       0x10 ./source/PWM.o
- .debug_macro   0x00000000      0x12e ./source/PWM.o
- .debug_macro   0x00000000       0x16 ./source/PWM.o
- .debug_macro   0x00000000       0x22 ./source/PWM.o
- .debug_macro   0x00000000      0x5b3 ./source/PWM.o
- .debug_macro   0x00000000       0x22 ./source/PWM.o
- .debug_macro   0x00000000       0x10 ./source/PWM.o
- .debug_macro   0x00000000       0x56 ./source/PWM.o
- .debug_macro   0x00000000       0x1c ./source/PWM.o
- .debug_macro   0x00000000       0x22 ./source/PWM.o
- .debug_macro   0x00000000       0xfb ./source/PWM.o
- .debug_macro   0x00000000      0xeeb ./source/PWM.o
- .debug_macro   0x00000000       0x40 ./source/PWM.o
- .debug_macro   0x00000000    0x1626f ./source/PWM.o
- .debug_macro   0x00000000     0x14b0 ./source/PWM.o
- .debug_macro   0x00000000       0x7a ./source/PWM.o
- .debug_macro   0x00000000       0xaf ./source/PWM.o
- .debug_macro   0x00000000      0x190 ./source/PWM.o
- .debug_macro   0x00000000       0x70 ./source/PWM.o
- .debug_macro   0x00000000       0x46 ./source/PWM.o
- .debug_macro   0x00000000       0x16 ./source/PWM.o
- .debug_macro   0x00000000       0x66 ./source/PWM.o
- .debug_macro   0x00000000       0x1c ./source/PWM.o
- .debug_macro   0x00000000       0x1c ./source/PWM.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .group         0x00000000        0xc ./source/main.o
+ .text          0x00000000        0x0 ./source/main.o
+ .data          0x00000000        0x0 ./source/main.o
+ .bss           0x00000000        0x0 ./source/main.o
+ .debug_macro   0x00000000      0xaae ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000      0x12e ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000      0x5b3 ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0x10 ./source/main.o
+ .debug_macro   0x00000000       0x56 ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0x22 ./source/main.o
+ .debug_macro   0x00000000       0xfb ./source/main.o
+ .debug_macro   0x00000000      0xeeb ./source/main.o
+ .debug_macro   0x00000000       0x40 ./source/main.o
+ .debug_macro   0x00000000    0x1626f ./source/main.o
+ .debug_macro   0x00000000     0x14b0 ./source/main.o
+ .debug_macro   0x00000000       0x7a ./source/main.o
+ .debug_macro   0x00000000       0xaf ./source/main.o
+ .debug_macro   0x00000000      0x190 ./source/main.o
+ .debug_macro   0x00000000       0x70 ./source/main.o
+ .debug_macro   0x00000000       0x46 ./source/main.o
+ .debug_macro   0x00000000       0x16 ./source/main.o
+ .debug_macro   0x00000000       0x66 ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
+ .debug_macro   0x00000000       0x1c ./source/main.o
  .group         0x00000000        0xc ./source/semihost_hardfault.o
  .text          0x00000000        0x0 ./source/semihost_hardfault.o
  .data          0x00000000        0x0 ./source/semihost_hardfault.o
@@ -2308,7 +2308,7 @@ LOAD ./utilities/fsl_debug_console.o
 LOAD ./utilities/fsl_str.o
 LOAD ./startup/startup_mk66f18.o
 LOAD ./source/FTM_pwm.o
-LOAD ./source/PWM.o
+LOAD ./source/main.o
 LOAD ./source/semihost_hardfault.o
 LOAD ./drivers/fsl_clock.o
 LOAD ./drivers/fsl_common.o
@@ -2506,10 +2506,10 @@ END GROUP
                 0x000005c8       0x80 ./source/FTM_pwm.o
                 0x000005c8                FTM_pwm_update
  .text.PORT_SetPinConfig
-                0x00000648       0x38 ./source/PWM.o
- .text.delay    0x00000680       0x2c ./source/PWM.o
+                0x00000648       0x38 ./source/main.o
+ .text.delay    0x00000680       0x2c ./source/main.o
                 0x00000680                delay
- .text.main     0x000006ac      0x16c ./source/PWM.o
+ .text.main     0x000006ac      0x16c ./source/main.o
                 0x000006ac                main
  .text.FTM_GetInstance
                 0x00000818       0x54 ./drivers/fsl_ftm.o
@@ -2920,7 +2920,7 @@ END GROUP
  .text.FTM_StopTimer
                 0x00001faa       0x20 ./source/FTM_pwm.o
  .text.CLOCK_EnableClock
-                0x00001fca       0x34 ./source/PWM.o
+                0x00001fca       0x34 ./source/main.o
  .text.HardFault_Handler
                 0x00001ffe       0x2c ./source/semihost_hardfault.o
                 0x00001ffe                HardFault_Handler
@@ -3030,10 +3030,10 @@ END GROUP
                 0x000026fc      0x142 ./source/FTM_pwm.o
  *fill*         0x0000283e        0x2 ff
  .rodata.PORT_SetPinConfig.str1.4
-                0x00002840       0x7b ./source/PWM.o
+                0x00002840       0x7b ./source/main.o
  *fill*         0x000028bb        0x1 ff
  .rodata.main.str1.4
-                0x000028bc        0xd ./source/PWM.o
+                0x000028bc        0xd ./source/main.o
  *fill*         0x000028c9        0x3 ff
  .rodata.s_ftmBases
                 0x000028cc       0x10 ./drivers/fsl_ftm.o
@@ -3277,7 +3277,7 @@ LOAD linker stubs
  .debug_info    0x00000c24      0xafc ./utilities/fsl_str.o
  .debug_info    0x00001720      0xa44 ./startup/startup_mk66f18.o
  .debug_info    0x00002164      0x7fe ./source/FTM_pwm.o
- .debug_info    0x00002962      0x843 ./source/PWM.o
+ .debug_info    0x00002962      0x843 ./source/main.o
  .debug_info    0x000031a5       0x3c ./source/semihost_hardfault.o
  .debug_info    0x000031e1     0x16db ./drivers/fsl_ftm.o
  .debug_info    0x000048bc     0x1f53 ./drivers/fsl_i2c.o
@@ -3292,7 +3292,7 @@ LOAD linker stubs
  .debug_abbrev  0x00000232      0x24d ./utilities/fsl_str.o
  .debug_abbrev  0x0000047f      0x185 ./startup/startup_mk66f18.o
  .debug_abbrev  0x00000604      0x194 ./source/FTM_pwm.o
- .debug_abbrev  0x00000798      0x1ea ./source/PWM.o
+ .debug_abbrev  0x00000798      0x1ea ./source/main.o
  .debug_abbrev  0x00000982       0x31 ./source/semihost_hardfault.o
  .debug_abbrev  0x000009b3      0x290 ./drivers/fsl_ftm.o
  .debug_abbrev  0x00000c43      0x363 ./drivers/fsl_i2c.o
@@ -3312,7 +3312,7 @@ LOAD linker stubs
  .debug_aranges
                 0x00000500       0x58 ./source/FTM_pwm.o
  .debug_aranges
-                0x00000558       0x38 ./source/PWM.o
+                0x00000558       0x38 ./source/main.o
  .debug_aranges
                 0x00000590       0x20 ./source/semihost_hardfault.o
  .debug_aranges
@@ -3335,7 +3335,7 @@ LOAD linker stubs
  .debug_ranges  0x00000098       0xd8 ./utilities/fsl_str.o
  .debug_ranges  0x00000170      0x390 ./startup/startup_mk66f18.o
  .debug_ranges  0x00000500       0x48 ./source/FTM_pwm.o
- .debug_ranges  0x00000548       0x28 ./source/PWM.o
+ .debug_ranges  0x00000548       0x28 ./source/main.o
  .debug_ranges  0x00000570       0x10 ./source/semihost_hardfault.o
  .debug_ranges  0x00000580       0xc8 ./drivers/fsl_ftm.o
  .debug_ranges  0x00000648      0x178 ./drivers/fsl_i2c.o
@@ -3385,16 +3385,16 @@ LOAD linker stubs
  .debug_macro   0x0001a5ec       0x1c ./source/FTM_pwm.o
  .debug_macro   0x0001a608       0x22 ./source/FTM_pwm.o
  .debug_macro   0x0001a62a       0x16 ./source/FTM_pwm.o
- .debug_macro   0x0001a640      0x20e ./source/PWM.o
- .debug_macro   0x0001a84e       0xd8 ./source/PWM.o
- .debug_macro   0x0001a926       0x1c ./source/PWM.o
- .debug_macro   0x0001a942       0x16 ./source/PWM.o
- .debug_macro   0x0001a958       0x16 ./source/PWM.o
- .debug_macro   0x0001a96e      0x24f ./source/PWM.o
- .debug_macro   0x0001abbd      0x268 ./source/PWM.o
- .debug_macro   0x0001ae25       0x16 ./source/PWM.o
- .debug_macro   0x0001ae3b       0x10 ./source/PWM.o
- .debug_macro   0x0001ae4b       0x1c ./source/PWM.o
+ .debug_macro   0x0001a640      0x20e ./source/main.o
+ .debug_macro   0x0001a84e       0xd8 ./source/main.o
+ .debug_macro   0x0001a926       0x1c ./source/main.o
+ .debug_macro   0x0001a942       0x16 ./source/main.o
+ .debug_macro   0x0001a958       0x16 ./source/main.o
+ .debug_macro   0x0001a96e      0x24f ./source/main.o
+ .debug_macro   0x0001abbd      0x268 ./source/main.o
+ .debug_macro   0x0001ae25       0x16 ./source/main.o
+ .debug_macro   0x0001ae3b       0x10 ./source/main.o
+ .debug_macro   0x0001ae4b       0x1c ./source/main.o
  .debug_macro   0x0001ae67       0x11 ./source/semihost_hardfault.o
  .debug_macro   0x0001ae78      0x122 ./drivers/fsl_ftm.o
  .debug_macro   0x0001af9a      0x121 ./drivers/fsl_i2c.o
@@ -3409,22 +3409,22 @@ LOAD linker stubs
  .debug_macro   0x0001b5a5       0x6a ./component/serial_manager/fsl_component_serial_manager.o
  .debug_macro   0x0001b60f      0x14f ./component/serial_manager/fsl_component_serial_port_uart.o
 
-.debug_line     0x00000000     0x7c02
+.debug_line     0x00000000     0x7c03
  .debug_line    0x00000000      0x91e ./utilities/fsl_debug_console.o
  .debug_line    0x0000091e      0xb3b ./utilities/fsl_str.o
  .debug_line    0x00001459      0xa61 ./startup/startup_mk66f18.o
  .debug_line    0x00001eba      0x532 ./source/FTM_pwm.o
- .debug_line    0x000023ec      0x768 ./source/PWM.o
- .debug_line    0x00002b54       0x59 ./source/semihost_hardfault.o
- .debug_line    0x00002bad     0x1027 ./drivers/fsl_ftm.o
- .debug_line    0x00003bd4     0x140f ./drivers/fsl_i2c.o
- .debug_line    0x00004fe3     0x1492 ./drivers/fsl_uart.o
- .debug_line    0x00006475      0x442 ./device/system_MK66F18.o
- .debug_line    0x000068b7      0x56c ./component/uart/fsl_adapter_uart.o
- .debug_line    0x00006e23      0x812 ./component/serial_manager/fsl_component_serial_manager.o
- .debug_line    0x00007635      0x5cd ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_line    0x000023ec      0x769 ./source/main.o
+ .debug_line    0x00002b55       0x59 ./source/semihost_hardfault.o
+ .debug_line    0x00002bae     0x1027 ./drivers/fsl_ftm.o
+ .debug_line    0x00003bd5     0x140f ./drivers/fsl_i2c.o
+ .debug_line    0x00004fe4     0x1492 ./drivers/fsl_uart.o
+ .debug_line    0x00006476      0x442 ./device/system_MK66F18.o
+ .debug_line    0x000068b8      0x56c ./component/uart/fsl_adapter_uart.o
+ .debug_line    0x00006e24      0x812 ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_line    0x00007636      0x5cd ./component/serial_manager/fsl_component_serial_port_uart.o
 
-.debug_str      0x00000000    0xbe40e
+.debug_str      0x00000000    0xbe40f
  .debug_str     0x00000000    0xb6d62 ./utilities/fsl_debug_console.o
                               0xb6e7f (size before relaxing)
  .debug_str     0x000b6d62      0xc0a ./utilities/fsl_str.o
@@ -3433,23 +3433,23 @@ LOAD linker stubs
                                0x37ce (size before relaxing)
  .debug_str     0x000b82c5      0x73a ./source/FTM_pwm.o
                               0xb54ea (size before relaxing)
- .debug_str     0x000b89ff     0x2216 ./source/PWM.o
-                              0xb7c7f (size before relaxing)
- .debug_str     0x000bac15       0x1f ./source/semihost_hardfault.o
+ .debug_str     0x000b89ff     0x2217 ./source/main.o
+                              0xb7c80 (size before relaxing)
+ .debug_str     0x000bac16       0x1f ./source/semihost_hardfault.o
                                0x2dea (size before relaxing)
- .debug_str     0x000bac34      0xa16 ./drivers/fsl_ftm.o
+ .debug_str     0x000bac35      0xa16 ./drivers/fsl_ftm.o
                               0xb6a50 (size before relaxing)
- .debug_str     0x000bb64a     0x12fb ./drivers/fsl_i2c.o
+ .debug_str     0x000bb64b     0x12fb ./drivers/fsl_i2c.o
                               0xb6e83 (size before relaxing)
- .debug_str     0x000bc945      0xe41 ./drivers/fsl_uart.o
+ .debug_str     0x000bc946      0xe41 ./drivers/fsl_uart.o
                               0xb70e8 (size before relaxing)
- .debug_str     0x000bd786      0x48b ./device/system_MK66F18.o
+ .debug_str     0x000bd787      0x48b ./device/system_MK66F18.o
                               0xb3596 (size before relaxing)
- .debug_str     0x000bdc11      0x2ec ./component/uart/fsl_adapter_uart.o
+ .debug_str     0x000bdc12      0x2ec ./component/uart/fsl_adapter_uart.o
                               0xb5edb (size before relaxing)
- .debug_str     0x000bdefd      0x40b ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_str     0x000bdefe      0x40b ./component/serial_manager/fsl_component_serial_manager.o
                               0xb5f08 (size before relaxing)
- .debug_str     0x000be308      0x106 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_str     0x000be309      0x106 ./component/serial_manager/fsl_component_serial_port_uart.o
                               0xb5c5f (size before relaxing)
 
 .comment        0x00000000       0x49
@@ -3458,7 +3458,7 @@ LOAD linker stubs
  .comment       0x00000049       0x4a ./utilities/fsl_str.o
  .comment       0x00000049       0x4a ./startup/startup_mk66f18.o
  .comment       0x00000049       0x4a ./source/FTM_pwm.o
- .comment       0x00000049       0x4a ./source/PWM.o
+ .comment       0x00000049       0x4a ./source/main.o
  .comment       0x00000049       0x4a ./source/semihost_hardfault.o
  .comment       0x00000049       0x4a ./drivers/fsl_ftm.o
  .comment       0x00000049       0x4a ./drivers/fsl_i2c.o
@@ -3511,7 +3511,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000009c       0x34 ./source/FTM_pwm.o
  .ARM.attributes
-                0x000000d0       0x34 ./source/PWM.o
+                0x000000d0       0x34 ./source/main.o
  .ARM.attributes
                 0x00000104       0x34 ./source/semihost_hardfault.o
  .ARM.attributes
@@ -3600,7 +3600,7 @@ LOAD linker stubs
  .debug_frame   0x000002d4      0x32c ./utilities/fsl_str.o
  .debug_frame   0x00000600      0xa4c ./startup/startup_mk66f18.o
  .debug_frame   0x0000104c      0x138 ./source/FTM_pwm.o
- .debug_frame   0x00001184       0xa4 ./source/PWM.o
+ .debug_frame   0x00001184       0xa4 ./source/main.o
  .debug_frame   0x00001228       0x20 ./source/semihost_hardfault.o
  .debug_frame   0x00001248      0x3a8 ./drivers/fsl_ftm.o
  .debug_frame   0x000015f0      0x6b0 ./drivers/fsl_i2c.o
@@ -3775,7 +3775,7 @@ DbgConsole_Getchar                                ./utilities/fsl_debug_console.
 DbgConsole_Init                                   ./utilities/fsl_debug_console.o
                                                   ./board/board.o
 DbgConsole_Printf                                 ./utilities/fsl_debug_console.o
-                                                  ./source/PWM.o
+                                                  ./source/main.o
 DbgConsole_Putchar                                ./utilities/fsl_debug_console.o
 DbgConsole_ReadCharacter                          ./utilities/fsl_debug_console.o
 DbgConsole_ReadLine                               ./utilities/fsl_debug_console.o
@@ -3825,10 +3825,10 @@ FTM_UpdateChnlEdgeLevelSelect                     ./drivers/fsl_ftm.o
 FTM_UpdatePwmDutycycle                            ./drivers/fsl_ftm.o
 FTM_pwm_init                                      ./source/FTM_pwm.o
 FTM_pwm_init_detailed                             ./source/FTM_pwm.o
-                                                  ./source/PWM.o
+                                                  ./source/main.o
 FTM_pwm_init_duty_50                              ./source/FTM_pwm.o
 FTM_pwm_update                                    ./source/FTM_pwm.o
-                                                  ./source/PWM.o
+                                                  ./source/main.o
 FTM_pwm_updateHz                                  ./source/FTM_pwm.o
 Flash_Config                                      ./startup/startup_mk66f18.o
 GPIO_PinInit                                      ./drivers/fsl_gpio.o
@@ -4202,7 +4202,7 @@ __assertion_failed                                c:/nxp/mcuxpressoide_11.6.0_81
                                                   ./drivers/fsl_ftm.o
                                                   ./drivers/fsl_common_arm.o
                                                   ./drivers/fsl_clock.o
-                                                  ./source/PWM.o
+                                                  ./source/main.o
                                                   ./source/FTM_pwm.o
 __bhs_ldivmod1                                    c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libcr_eabihelpers.a(division_64.o)
 __bhs_ui2d                                        c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/thumb/v7e-m+fp/hard\libcr_eabihelpers.a(double.o)
@@ -4289,7 +4289,7 @@ atol                                              c:/nxp/mcuxpressoide_11.6.0_81
 bss_init                                          ./startup/startup_mk66f18.o
 calloc                                            c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(alloc.o)
 data_init                                         ./startup/startup_mk66f18.o
-delay                                             ./source/PWM.o
+delay                                             ./source/main.o
 errno                                             c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(errno.o)
                                                   c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(_ldexpl.o)
                                                   c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(_cr_sbrk.o)
@@ -4330,7 +4330,7 @@ ispunct                                           c:/nxp/mcuxpressoide_11.6.0_81
 isspace                                           c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(ctype.o)
 isupper                                           c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(ctype.o)
 isxdigit                                          c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(ctype.o)
-main                                              ./source/PWM.o
+main                                              ./source/main.o
                                                   c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_nohost_nf.a(_cr__main.o)
 malloc                                            c:/nxp/mcuxpressoide_11.6.0_8187/ide/plugins/com.nxp.mcuxpresso.tools.win32_11.6.0.202112161359/tools/bin/../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libcr_c.a(alloc.o)
                                                   ./drivers/fsl_common.o

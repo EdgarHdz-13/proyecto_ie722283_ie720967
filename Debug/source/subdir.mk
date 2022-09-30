@@ -5,17 +5,17 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../source/FTM_pwm.c \
-../source/PWM.c \
+../source/main.c \
 ../source/semihost_hardfault.c 
 
 C_DEPS += \
 ./source/FTM_pwm.d \
-./source/PWM.d \
+./source/main.d \
 ./source/semihost_hardfault.d 
 
 OBJS += \
 ./source/FTM_pwm.o \
-./source/PWM.o \
+./source/main.o \
 ./source/semihost_hardfault.o 
 
 
@@ -31,7 +31,7 @@ source/%.o: ../source/%.c source/subdir.mk
 clean: clean-source
 
 clean-source:
-	-$(RM) ./source/FTM_pwm.d ./source/FTM_pwm.o ./source/PWM.d ./source/PWM.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o
+	-$(RM) ./source/FTM_pwm.d ./source/FTM_pwm.o ./source/main.d ./source/main.o ./source/semihost_hardfault.d ./source/semihost_hardfault.o
 
 .PHONY: clean-source
 
