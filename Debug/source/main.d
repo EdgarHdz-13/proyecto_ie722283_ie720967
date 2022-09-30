@@ -31,7 +31,7 @@ source/main.o source/main.d: ../source/main.c \
  C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\portable\GCC\ARM_CM4F/portmacro.h \
  C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/mpu_wrappers.h \
  C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h \
- ../source/MUSIC_gen.h ../source/FTM_pwm.h \
+ ../source/MUSIC_gen.h ../source/MUSIC_album.h ../source/FTM_pwm.h \
  C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/task.h \
  C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/list.h
 C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/board.h:
@@ -67,6 +67,7 @@ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_
 C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/mpu_wrappers.h:
 C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h:
 ../source/MUSIC_gen.h:
+../source/MUSIC_album.h:
 ../source/FTM_pwm.h:
 C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/task.h:
 C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/list.h:

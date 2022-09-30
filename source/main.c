@@ -42,11 +42,15 @@
 /* TODO: insert other include files here. */
 #include "fsl_ftm.h"
 #include "MUSIC_gen.h"
+#include "MUSIC_album.h"
 #include "FTM_pwm.h"
 #include "task.h"
 #include "FreeRTOS.h"
 /* TODO: insert other definitions and declarations here. */
-
+extern const song_t scale_song;
+extern const song_t Aura_Lee_song;
+extern const song_t Away_in_the_Deep_Forest_song;
+extern const song_t Song_of_the_storm_song;
 /*
  * @brief   Application entry point.
  */
@@ -68,6 +72,7 @@ void music_task(void *pvParameters)
 int main(void)
 {
 	MUSIC_initialize();
+	MUSIC_changeSong(Song_of_the_storm_song);
 	xTaskCreate(music_task, "MUSIC", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");
     vTaskStartScheduler();
@@ -76,33 +81,7 @@ int main(void)
     while(1)
     {
         delay();
-        /*
-        MUSIC_pnote(DO);
-        delay();
-        MUSIC_pnote(FA);
-        delay();
-        MUSIC_pnote(MI);
-        delay();
-        MUSIC_pnote(FA);
-        delay();
-        MUSIC_pnote(SOL);
-        delay();
-        MUSIC_pnote(RE);
-        delay();
-        MUSIC_pnote(SOL);
-        delay();
-        MUSIC_pnote(FA);
-        delay();
-        MUSIC_pnote(MI);
-        delay();
-        MUSIC_pnote(RE);
-        delay();
-        MUSIC_pnote(MI);
-        delay();
-        MUSIC_pnote(FA);
-        delay();
-        MUSIC_pnote(DO);
-        delay();*/
+
     }
     return 0 ;
 }
