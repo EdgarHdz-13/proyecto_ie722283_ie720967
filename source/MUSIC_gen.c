@@ -10,7 +10,19 @@
 #include "FTM_pwm.h"
 #include "MUSIC_gen.h"
 
+
+note_t default_note[] = {{DO,QUARTER},{RE,QUARTER},{MI,QUARTER},{FA,QUARTER},{SOL,QUARTER},{LA,QUARTER},{SI,QUARTER}};
+
+const song_t default_music =
+{
+        default_note,
+        DEFAULT_NOTE_SIZE
+};
+
 uint8_t g_volume = INITIALIZE_VOL;
+song_t g_current_music = default_music;
+uint16_t g_music_time = 0;
+
 
 void MUSIC_initialize(void)
 {
@@ -34,8 +46,35 @@ void MUSIC_initialize(void)
     FTM_pwm_init_detailed(FTM3,kFTM_Chnl_2, 30,0);
 }
 
-void MUSIC_pnote(uint16_t freq){
+void MUSIC_pnote(uint16_t freq)
+{
     FTM_pwm_update(MUSIC_FTM, MUSIC_FTM_CHANNEL, freq, g_volume);
+}
+
+void MUSIC_changeSong(song_t song)
+{
+    g_music_time = 0;
+    g_current_music = song;
+}
+
+uint32_t MUSIC_playback(void)
+{
+    note_times_t note_time=0;
+    uint16_t note;
+
+    note = (uint16_t)((g_current_music.note_struct+ g_music_time)->note);
+    note_time = (uint16_t)((g_current_music.note_struct+ g_music_time)->time);
+
+    MUSIC_pnote(note);
+    if(g_music_time < g_current_music.size - 1)
+    {
+        g_music_time++;
+    }
+    else
+    {
+        g_music_time = 0;
+    }
+    return  note_time;
 }
 
 

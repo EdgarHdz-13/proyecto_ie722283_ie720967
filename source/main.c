@@ -55,7 +55,7 @@ void delay(void)
 }
 int main(void)
 {
-	uint8_t i;
+	uint32_t i;
 	MUSIC_initialize();
 
     PRINTF("Hello World\n");
@@ -63,7 +63,9 @@ int main(void)
 
     while(1)
     {
-        FTM_pwm_update(FTM3, kFTM_Chnl_2, DO, i);
+        i = MUSIC_playback();
+        delay();
+        /*
         MUSIC_pnote(DO);
         delay();
         MUSIC_pnote(FA);
@@ -89,7 +91,7 @@ int main(void)
         MUSIC_pnote(FA);
         delay();
         MUSIC_pnote(DO);
-        delay();
+        delay();*/
     }
     return 0 ;
 }
