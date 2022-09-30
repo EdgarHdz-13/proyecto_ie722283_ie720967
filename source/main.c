@@ -39,11 +39,12 @@
 #include "clock_config.h"
 #include "MK66F18.h"
 #include "fsl_debug_console.h"
+/* TODO: insert other include files here. */
 #include "fsl_ftm.h"
 #include "MUSIC_gen.h"
 #include "FTM_pwm.h"
-/* TODO: insert other include files here. */
-
+#include "task.h"
+#include "FreeRTOS.h"
 /* TODO: insert other definitions and declarations here. */
 
 /*
@@ -53,17 +54,27 @@ void delay(void)
 {
 	for(int i=0;i<200000;i++){};
 }
+void music_task(void *pvParameters)
+{
+    uint32_t time;
+    while(1)
+    {
+        time = MUSIC_playback();
+        vTaskDelay(time/portTICK_PERIOD_MS);
+    }
+
+}
+
 int main(void)
 {
-	uint32_t i;
 	MUSIC_initialize();
-
+	xTaskCreate(music_task, "MUSIC", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");
+    vTaskStartScheduler();
 
 
     while(1)
     {
-        i = MUSIC_playback();
         delay();
         /*
         MUSIC_pnote(DO);

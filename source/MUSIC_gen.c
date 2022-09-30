@@ -10,6 +10,7 @@
 #include "FTM_pwm.h"
 #include "MUSIC_gen.h"
 
+#define BASE_TO_MULTIPLY BASE_FREQ_IN_MS/8
 
 note_t default_note[] = {{DO,QUARTER},{RE,QUARTER},{MI,QUARTER},{FA,QUARTER},{SOL,QUARTER},{LA,QUARTER},{SI,QUARTER}};
 
@@ -74,7 +75,8 @@ uint32_t MUSIC_playback(void)
     {
         g_music_time = 0;
     }
-    return  note_time;
+
+    return  note_time*BASE_TO_MULTIPLY;
 }
 
 

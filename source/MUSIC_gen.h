@@ -25,7 +25,7 @@
 #define MAX_VOL			    40u
 #define MIN_VOL			    0u
 
-#define BASE_FREQ_IN_US     500
+#define BASE_FREQ_IN_MS     500
 
 #define MUSIC_FTM           FTM3
 #define MUSIC_FTM_CHANNEL   kFTM_Chnl_2
