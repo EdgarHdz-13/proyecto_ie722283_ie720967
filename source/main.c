@@ -40,13 +40,12 @@
 #include "MK66F18.h"
 #include "fsl_debug_console.h"
 #include "fsl_ftm.h"
+#include "MUSIC_gen.h"
 #include "FTM_pwm.h"
 /* TODO: insert other include files here. */
 
 /* TODO: insert other definitions and declarations here. */
 
-
-#define DUTY 26
 /*
  * @brief   Application entry point.
  */
@@ -57,59 +56,40 @@ void delay(void)
 int main(void)
 {
 	uint8_t i;
-
-    FTM_pwm_init_detailed(FTM3,kFTM_Chnl_2, 1046,16);
+	MUSIC_initialize();
 
     PRINTF("Hello World\n");
-    const port_pin_config_t porte7_config = {/* Internal pull-up resistor is enabled */
-                                                            kPORT_PullDisable,
-                                                           /* Fast slew rate is configured */
-                                                           kPORT_FastSlewRate,
-                                                           /* Passive filter is disabled */
-                                                           kPORT_PassiveFilterDisable,
-                                                           /* Open drain is disabled */
-                                                           kPORT_OpenDrainDisable,
-                                                           /* High drive strength is configured */
-                                                           kPORT_HighDriveStrength,
-                                                           /* Pin is configured as PTA4 */
 
-														   kPORT_MuxAlt6,
-                                                           /* Pin Control Register fields [15:0] are not locked */
-                                                           kPORT_UnlockRegister};
 
     while(1)
     {
-
-		for(i=0;i<=40;i++)
-		{
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, DO, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, FA, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, MI, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, FA, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, SOL, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, RE, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, SOL, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, FA, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, MI, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, RE, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, MI, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, FA, i);
-	    	delay();
-	    	FTM_pwm_update(FTM3, kFTM_Chnl_2, DO, i);
-	    	delay();
-
-		}
+        FTM_pwm_update(FTM3, kFTM_Chnl_2, DO, i);
+        MUSIC_pnote(DO);
+        delay();
+        MUSIC_pnote(FA);
+        delay();
+        MUSIC_pnote(MI);
+        delay();
+        MUSIC_pnote(FA);
+        delay();
+        MUSIC_pnote(SOL);
+        delay();
+        MUSIC_pnote(RE);
+        delay();
+        MUSIC_pnote(SOL);
+        delay();
+        MUSIC_pnote(FA);
+        delay();
+        MUSIC_pnote(MI);
+        delay();
+        MUSIC_pnote(RE);
+        delay();
+        MUSIC_pnote(MI);
+        delay();
+        MUSIC_pnote(FA);
+        delay();
+        MUSIC_pnote(DO);
+        delay();
     }
     return 0 ;
 }
