@@ -46,11 +46,16 @@
 #include "FTM_pwm.h"
 #include "task.h"
 #include "FreeRTOS.h"
+#include "LCD_nokia.h"
+#include "SPI.h"
+#include "Tamagotchi_skin.h"
 /* TODO: insert other definitions and declarations here. */
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
 extern const song_t Song_of_the_storm_song;
+
+extern const uint8_t Robot[];
 /*
  * @brief   Application entry point.
  */
@@ -68,12 +73,30 @@ void music_task(void *pvParameters)
     }
 
 }
+void initialize(void *pvParameters)
+{
+    MUSIC_initialize();
+    MUSIC_changeSong(Song_of_the_storm_song);
+    SPI_config();
+    LCD_nokia_init();
+
+    LCD_nokia_clear();
+    for(int y= 0;y<=5;y++)
+    {
+        for (int x = 0; x < 16; x++) {
+            LCD_nokia_goto_xy(x, y);
+            LCD_nokia_write_byte(LCD_DATA,(uint8_t)(Robot[x+(y*32)]));
+        }
+    }
+
+    vTaskSuspend(NULL);
+}
 
 int main(void)
 {
-	MUSIC_initialize();
-	MUSIC_changeSong(Song_of_the_storm_song);
-	xTaskCreate(music_task, "MUSIC", 100, NULL, 1, NULL);
+
+	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
+	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
     PRINTF("Hello World\n");
     vTaskStartScheduler();
 

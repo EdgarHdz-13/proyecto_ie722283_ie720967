@@ -12,8 +12,8 @@
 #define LCD_Y 48
 #define LCD_DATA 1
 #define LCD_CMD 0
-#define DATA_OR_CMD_PIN 4
-#define RESET_PIN 5
+#define DATA_OR_CMD_PIN 12
+#define RESET_PIN 13
 #define CE 6
 /*It configures the LCD*/
 void LCD_nokia_init(void);
