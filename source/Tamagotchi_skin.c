@@ -5,6 +5,7 @@
  *      Author: Edgar
  */
 #include "Tamagotchi_skin.h"
+#include "Tamagotchi_char.h"
 
 const uint8_t Robot[] =
 {
@@ -38,3 +39,15 @@ const uint8_t Robot[] =
         0xd0, 0xe4, 0xc1, 0x98, 0x5b, 0x9a, 0xd9, 0xd9, 0xd9, 0x9a, 0x5b, 0x98, 0xc1, 0xf4, 0xf0, 0xff
 };
 
+const tamagotchi_t Robot_skin = {
+        Robot,
+        {GENERAL,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2},
+        100
+};

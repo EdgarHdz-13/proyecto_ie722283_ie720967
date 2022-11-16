@@ -6,7 +6,7 @@
  * Generated linker script file for MK66FN2M0xxx18
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.6.0 [Build 8187] [2022-07-13] on 14 nov 2022 17:00:25
+ * MCUXpresso IDE v11.5.0 [Build 7232] [2022-01-11] on Nov 15, 2022, 7:55:12 PM
  */
 
 INCLUDE "Proyecto_embebidos_2_Debug_library.ld"
@@ -61,6 +61,21 @@ SECTIONS
        KEEP(*freertos*/tasks.o(.rodata*)) /* FreeRTOS Debug Config */
        *(.rodata .rodata.* .constdata .constdata.*)
        . = ALIGN(8);
+    } > PROGRAM_FLASH
+    /*
+     * for exception handling/unwind - some Newlib functions (in common
+     * with C++ and STDC++) use this.
+     */
+    .ARM.extab : ALIGN(8)
+    {
+        *(.ARM.extab* .gnu.linkonce.armextab.*)
+    } > PROGRAM_FLASH
+
+    .ARM.exidx : ALIGN(8)
+    {
+        __exidx_start = .;
+        *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+        __exidx_end = .;
     } > PROGRAM_FLASH
  
     _etext = .;
@@ -218,22 +233,6 @@ SECTIONS
        PROVIDE(__end_noinit_RAM = .) ;
        PROVIDE(__end_noinit_SRAM_UPPER = .) ;        
     } > SRAM_UPPER AT> SRAM_UPPER
-
-    /*
-     * for exception handling/unwind - some Newlib functions (in common
-     * with C++ and STDC++) use this.
-     */
-    .ARM.extab : ALIGN(8)
-    {
-        *(.ARM.extab* .gnu.linkonce.armextab.*)
-    } > PROGRAM_FLASH
-
-    .ARM.exidx : ALIGN(8)
-    {
-        __exidx_start = .;
-        *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-        __exidx_end = .;
-    } > PROGRAM_FLASH
 
     /* Reserve and place Heap within memory map */
     _HeapSize = 0x1000;

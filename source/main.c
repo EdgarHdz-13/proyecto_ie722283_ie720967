@@ -81,13 +81,7 @@ void initialize(void *pvParameters)
     LCD_nokia_init();
 
     LCD_nokia_clear();
-    for(int y= 0;y<=5;y++)
-    {
-        for (int x = 0; x < 16; x++) {
-            LCD_nokia_goto_xy(x, y);
-            LCD_nokia_write_byte(LCD_DATA,(uint8_t)(Robot[x+(y*32)]));
-        }
-    }
+
 
     vTaskSuspend(NULL);
 }
