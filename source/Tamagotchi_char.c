@@ -16,6 +16,7 @@ void tamagotchi_print(tamagotchi_t pet,uint8_t posx, uint8_t posy)
 {
     uint8_t conty=0,contx=0;
     posx = posx<<4;
+    posy = posy<<1;
     for(conty = 0;conty < TAMAGOTCHI_HEIGHT;conty++)
     {
         for (contx = 0; contx < TAMAGOTCHI_LENGTH; contx++) {
@@ -23,6 +24,12 @@ void tamagotchi_print(tamagotchi_t pet,uint8_t posx, uint8_t posy)
             LCD_nokia_write_byte(LCD_DATA,(uint8_t)((*(pet.skin+(posx+contx)+((posy+conty)<<5))))); //y<<5 == y*32
         }
     }
+}
+
+void tamagotchi_move(uint8_t posx, uint8_t posy)
+{
+    x = posx;
+    y = posy;
 }
 
 

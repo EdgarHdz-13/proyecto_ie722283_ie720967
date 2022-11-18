@@ -4,13 +4,16 @@
  *  Created on: 14 nov 2022
  *      Author: Edgar
  */
-
+/*
+ *      THIS PROGRAM ONLY WORKS WITH 16x16 tamagotchis
+ *
+ */
 #ifndef TAMAGOTCHI_CHAR_H_
 #define TAMAGOTCHI_CHAR_H_
 
 #include "stdint.h"
-#define MAX_STATES 2
-
+#define CENTER_X    34
+#define CENTER_Y    2
 
 typedef enum
 {
@@ -41,5 +44,6 @@ typedef struct {
 }tamagotchi_t;
 
 void tamagotchi_print(tamagotchi_t pet,uint8_t posx, uint8_t posy);
+void tamagotchi_move(uint8_t posx, uint8_t posy);
 
 #endif /* TAMAGOTCHI_CHAR_H_ */

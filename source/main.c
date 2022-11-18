@@ -84,16 +84,42 @@ void initialize(void *pvParameters)
 
     LCD_nokia_clear();
 
-    tamagotchi_print(Robot_skin,0,0);
-    tamagotchi_print(Robot_skin,1,0);
+
     vTaskSuspend(NULL);
+}
+void Tamagotchi_char(void *pvParameteres)
+{
+    uint8_t x=34,y=2;
+    while(1)
+    {
+        tamagotchi_move(x,y);
+        tamagotchi_print(Robot_skin,0,0);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,1,0);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,1);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,2);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,3);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,4);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,5);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,0,6);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+        tamagotchi_print(Robot_skin,1,6);
+        vTaskDelay(pdMS_TO_TICKS(1000));
+    }
 }
 
 int main(void)
 {
 
-	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
+ 	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
+	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");
     vTaskStartScheduler();
 
