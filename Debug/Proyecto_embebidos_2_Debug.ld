@@ -6,7 +6,7 @@
  * Generated linker script file for MK66FN2M0xxx18
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.30
- * MCUXpresso IDE v11.5.0 [Build 7232] [2022-01-11] on Nov 15, 2022, 7:55:12 PM
+ * MCUXpresso IDE v11.5.0 [Build 7232] [2022-01-11] on Nov 18, 2022, 7:28:58 AM
  */
 
 INCLUDE "Proyecto_embebidos_2_Debug_library.ld"

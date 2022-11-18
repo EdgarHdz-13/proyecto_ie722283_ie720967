@@ -49,6 +49,7 @@
 #include "LCD_nokia.h"
 #include "SPI.h"
 #include "Tamagotchi_skin.h"
+#include "Tamagotchi_char.h"
 /* TODO: insert other definitions and declarations here. */
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
@@ -56,6 +57,7 @@ extern const song_t Away_in_the_Deep_Forest_song;
 extern const song_t Song_of_the_storm_song;
 
 extern const uint8_t Robot[];
+extern tamagotchi_t Robot_skin;
 /*
  * @brief   Application entry point.
  */
@@ -82,7 +84,8 @@ void initialize(void *pvParameters)
 
     LCD_nokia_clear();
 
-
+    tamagotchi_print(Robot_skin,0,0);
+    tamagotchi_print(Robot_skin,1,0);
     vTaskSuspend(NULL);
 }
 

@@ -34,7 +34,8 @@ source/main.o source/main.d: ../source/main.c \
  ../source/MUSIC_album.h ../source/FTM_pwm.h \
  C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/task.h \
  C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/list.h \
- ../source/LCD_nokia.h ../source/SPI.h ../source/Tamagotchi_skin.h
+ ../source/LCD_nokia.h ../source/SPI.h ../source/Tamagotchi_skin.h \
+ ../source/Tamagotchi_char.h
 C:\Embebidos\ 2\Tareas\PROYECTO\board/board.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h:
@@ -75,3 +76,4 @@ C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/list.h:
 ../source/LCD_nokia.h:
 ../source/SPI.h:
 ../source/Tamagotchi_skin.h:
+../source/Tamagotchi_char.h:

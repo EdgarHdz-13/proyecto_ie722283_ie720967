@@ -1,4 +1,4 @@
-../source/main.c:62:6:delay	16	static
-../source/main.c:66:6:music_task	24	static
-../source/main.c:76:6:initialize	16	static
-../source/main.c:89:5:main	16	static
+../source/main.c:64:6:delay	16	static
+../source/main.c:68:6:music_task	24	static
+../source/main.c:78:6:initialize	24	static
+../source/main.c:92:5:main	16	static

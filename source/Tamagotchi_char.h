@@ -37,8 +37,9 @@ typedef struct {
     uint8_t     *skin;
     emotions_t  state;
     uint8_t     hungry;
+    uint16_t    length;
 }tamagotchi_t;
 
-void tamagotchi_print(tamagotchi_t pet);
+void tamagotchi_print(tamagotchi_t pet,uint8_t posx, uint8_t posy);
 
 #endif /* TAMAGOTCHI_CHAR_H_ */

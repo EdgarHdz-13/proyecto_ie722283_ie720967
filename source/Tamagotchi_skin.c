@@ -49,5 +49,6 @@ const tamagotchi_t Robot_skin = {
         1,
         1,
         2},
-        100
+        100,
+        16
 };

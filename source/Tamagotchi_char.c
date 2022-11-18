@@ -12,14 +12,15 @@
 #include "stdint.h"
 static uint8_t x,y;
 
-void tamagotchi_print(tamagotchi_t pet)
+void tamagotchi_print(tamagotchi_t pet,uint8_t posx, uint8_t posy)
 {
-    uint8_t y=0,x=0;
-    for(y = 0;y < TAMAGOTCHI_HEIGHT;y++)
+    uint8_t conty=0,contx=0;
+    posx = posx<<4;
+    for(conty = 0;conty < TAMAGOTCHI_HEIGHT;conty++)
     {
-        for (x = 0; x < TAMAGOTCHI_LENGTH; x++) {
-            LCD_nokia_goto_xy(x, y);
-            LCD_nokia_write_byte(LCD_DATA,(uint8_t)((*pet.skin+x+(y<<5)))); //y<<5 == y*32
+        for (contx = 0; contx < TAMAGOTCHI_LENGTH; contx++) {
+            LCD_nokia_goto_xy(x+contx, y+conty);
+            LCD_nokia_write_byte(LCD_DATA,(uint8_t)((*(pet.skin+(posx+contx)+((posy+conty)<<5))))); //y<<5 == y*32
         }
     }
 }
