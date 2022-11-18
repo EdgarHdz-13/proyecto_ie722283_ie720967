@@ -1,11 +1,14 @@
 
-
 #include "fsl_gpio.h"
 #include "fsl_port.h"
 #include "SPI.h"
 #include "LCD_nokia.h"
 #include "stdint.h"
 #include "fsl_dspi.h"
+#include "FreeRTOS.h"
+#include "semphr.h"
+
+SemaphoreHandle_t g_spi_sem;
 
 static const uint8_t ASCII[][5] =
 {
@@ -110,6 +113,7 @@ static const uint8_t ASCII[][5] =
 
 void LCD_nokia_init(void)
 {
+	g_spi_sem = xSemaphoreCreateMutex();
 	gpio_pin_config_t led_config = {
 			kGPIO_DigitalOutput,
 			1
@@ -137,23 +141,27 @@ void LCD_nokia_init(void)
 	LCD_nokia_write_byte(LCD_CMD, 0x0C); //Set display control, normal mode. 0x0D for inverse
 }
 
+
+
 void LCD_nokia_bitmap(const uint8_t bitmap[]){
-
+	xSemaphoreTake(g_spi_sem,portMAX_DELAY);
 	dspi_transfer_t masterXfer;
-  GPIO_PortSet(GPIOD, 1u << DATA_OR_CMD_PIN);
-   
-   masterXfer.txData = (uint8_t*)bitmap;
-   masterXfer.rxData = NULL;
-   masterXfer.dataSize	= 504;
-   masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
+	GPIO_PortSet(GPIOD, 1u << DATA_OR_CMD_PIN);
 
-   DSPI_MasterTransferBlocking(SPI0, &masterXfer);
+	masterXfer.txData = (uint8_t*)bitmap;
+	masterXfer.rxData = NULL;
+	masterXfer.dataSize	= 504;
+	masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
+
+	DSPI_MasterTransferBlocking(SPI0, &masterXfer);
+	xSemaphoreGive(g_spi_sem);
 }
 
 
 
 void LCD_nokia_write_byte(uint8_t data_or_command, uint8_t data)
 {
+	xSemaphoreTake(g_spi_sem,portMAX_DELAY);
 	dspi_transfer_t masterXfer;
 
 	if(data_or_command)
@@ -168,6 +176,7 @@ void LCD_nokia_write_byte(uint8_t data_or_command, uint8_t data)
    masterXfer.configFlags = kDSPI_MasterCtar0 | kDSPI_MasterPcs0 | kDSPI_MasterPcsContinuous;
 
    DSPI_MasterTransferBlocking(SPI0, &masterXfer);
+   xSemaphoreGive(g_spi_sem);
 }
 
 void LCD_nokia_send_char(uint8_t character) {

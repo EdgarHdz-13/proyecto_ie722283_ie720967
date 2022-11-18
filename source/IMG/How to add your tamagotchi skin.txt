@@ -1,0 +1,6 @@
+1. Use the template to add your skin
+2. Convert the image in the next website.
+https://javl.github.io/image2cpp/
+3. Add this code in tamagotchi skin
+4. Create the struct
+5. Add it with extern.

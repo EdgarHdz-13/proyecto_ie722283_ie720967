@@ -1,29 +1,28 @@
 source/FTM_pwm.o source/FTM_pwm.d: ../source/FTM_pwm.c \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/fsl_device_registers.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/core_cm4.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_version.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_compiler.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_gcc.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/system_MK66F18.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18_features.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common_arm.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_clock.h \
- ../source/FTM_pwm.h \
- C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/fsl_device_registers.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/core_cm4.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_version.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_compiler.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_gcc.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/system_MK66F18.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18_features.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common_arm.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_clock.h:
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_ftm.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\device/fsl_device_registers.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/core_cm4.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_version.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_compiler.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_gcc.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\device/system_MK66F18.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18_features.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common_arm.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_clock.h ../source/FTM_pwm.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_ftm.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\device/fsl_device_registers.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/core_cm4.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_version.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_compiler.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_gcc.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\device/system_MK66F18.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18_features.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common_arm.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_clock.h:
 ../source/FTM_pwm.h:
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h:
