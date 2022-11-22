@@ -89,7 +89,7 @@ void initialize(void *pvParameters)
 }
 void Tamagotchi_char(void *pvParameteres)
 {
-    uint8_t x=34,y=2;
+    uint8_t x=34,y=1;
     while(1)
     {
         tamagotchi_move(x,y);
@@ -97,20 +97,20 @@ void Tamagotchi_char(void *pvParameteres)
         vTaskDelay(pdMS_TO_TICKS(1000));
         tamagotchi_print(Robot_skin,1,0);
         vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,1);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,2);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,3);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,4);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,5);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,0,6);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,1,6);
-        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,1);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,2);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,3);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,4);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,5);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,0,6);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
+//        tamagotchi_print(Robot_skin,1,6);
+//        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 

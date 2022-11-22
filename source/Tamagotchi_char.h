@@ -5,7 +5,7 @@
  *      Author: Edgar
  */
 /*
- *      THIS PROGRAM ONLY WORKS WITH 16x16 tamagotchis
+ *      THIS PROGRAM ONLY WORKS WITH 16x16 tamagotchi's
  *
  */
 #ifndef TAMAGOTCHI_CHAR_H_
