@@ -89,13 +89,10 @@ void initialize(void *pvParameters)
 }
 void Tamagotchi_char(void *pvParameteres)
 {
-    uint8_t x=34,y=1;
+    tamagotchi_set_pet(Robot_skin);
     while(1)
     {
-        tamagotchi_move(x,y);
-        tamagotchi_print(Robot_skin,0,0);
-        vTaskDelay(pdMS_TO_TICKS(1000));
-        tamagotchi_print(Robot_skin,1,0);
+        TAMAGOTCHI_FSM_sequency();
         vTaskDelay(pdMS_TO_TICKS(1000));
 //        tamagotchi_print(Robot_skin,0,1);
 //        vTaskDelay(pdMS_TO_TICKS(1000));

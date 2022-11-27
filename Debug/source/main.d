@@ -1,78 +1,78 @@
 source/main.o source/main.d: ../source/main.c \
- C:\Embebidos\ 2\Tareas\PROYECTO\board/board.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\device/fsl_device_registers.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/core_cm4.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_version.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_compiler.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_gcc.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\device/system_MK66F18.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18_features.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common_arm.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_clock.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_gpio.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_port.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\board/peripherals.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\board/pin_mux.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\utilities/fsl_debug_console.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\component\serial_manager/fsl_component_serial_manager.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\component\serial_manager/fsl_component_serial_port_uart.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\component\uart/fsl_adapter_uart.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/FreeRTOS.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\source/FreeRTOSConfig.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/projdefs.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/portable.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/deprecated_definitions.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\portable\GCC\ARM_CM4F/portmacro.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/mpu_wrappers.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_ftm.h ../source/MUSIC_gen.h \
- ../source/MUSIC_album.h ../source/FTM_pwm.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/task.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/list.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/board.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/clock_config.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/fsl_device_registers.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/core_cm4.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_version.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_compiler.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_gcc.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/system_MK66F18.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18_features.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common_arm.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_clock.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_gpio.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_port.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/peripherals.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/pin_mux.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/clock_config.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\utilities/fsl_debug_console.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\serial_manager/fsl_component_serial_manager.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\serial_manager/fsl_component_serial_port_uart.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\uart/fsl_adapter_uart.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/FreeRTOS.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\source/FreeRTOSConfig.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/projdefs.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/portable.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/deprecated_definitions.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\portable\GCC\ARM_CM4F/portmacro.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/mpu_wrappers.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h \
+ ../source/MUSIC_gen.h ../source/MUSIC_album.h ../source/FTM_pwm.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/task.h \
+ C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/list.h \
  ../source/LCD_nokia.h ../source/SPI.h ../source/Tamagotchi_skin.h \
  ../source/Tamagotchi_char.h
-C:\Embebidos\ 2\Tareas\PROYECTO\board/board.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\device/fsl_device_registers.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/core_cm4.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_version.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_compiler.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\CMSIS/cmsis_gcc.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\device/system_MK66F18.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18_features.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common_arm.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_clock.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_gpio.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_port.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\board/peripherals.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\board/pin_mux.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\device/MK66F18.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\utilities/fsl_debug_console.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\component\serial_manager/fsl_component_serial_manager.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\component\serial_manager/fsl_component_serial_port_uart.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\component\uart/fsl_adapter_uart.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/FreeRTOS.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\source/FreeRTOSConfig.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/projdefs.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/portable.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/deprecated_definitions.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\portable\GCC\ARM_CM4F/portmacro.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/mpu_wrappers.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_ftm.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/board.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/clock_config.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/fsl_device_registers.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/core_cm4.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_version.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_compiler.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\CMSIS/cmsis_gcc.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/system_MK66F18.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18_features.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common_arm.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_clock.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_common.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_gpio.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_port.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/peripherals.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/pin_mux.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\board/clock_config.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\device/MK66F18.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\utilities/fsl_debug_console.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\serial_manager/fsl_component_serial_manager.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\serial_manager/fsl_component_serial_port_uart.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\component\uart/fsl_adapter_uart.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/FreeRTOS.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\source/FreeRTOSConfig.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/projdefs.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/portable.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/deprecated_definitions.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\portable\GCC\ARM_CM4F/portmacro.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/mpu_wrappers.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\drivers/fsl_ftm.h:
 ../source/MUSIC_gen.h:
 ../source/MUSIC_album.h:
 ../source/FTM_pwm.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/task.h:
-C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/list.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/task.h:
+C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos\ 2\Tareas\Proyecto_embebidos_2\freertos\freertos_kernel\include/list.h:
 ../source/LCD_nokia.h:
 ../source/SPI.h:
 ../source/Tamagotchi_skin.h:
