@@ -20,7 +20,6 @@ RM := rm -rf
 -include component/serial_manager/subdir.mk
 -include component/lists/subdir.mk
 -include board/subdir.mk
--include subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -37,7 +36,7 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := PROYECTO
+BUILD_ARTIFACT_NAME := Proyecto_embebidos_2
 BUILD_ARTIFACT_EXTENSION := axf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
@@ -49,26 +48,26 @@ all:
 	+@$(MAKE) --no-print-directory main-build && $(MAKE) --no-print-directory post-build
 
 # Main-build Target
-main-build: PROYECTO.axf
+main-build: Proyecto_embebidos_2.axf
 
 # Tool invocations
-PROYECTO.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
+Proyecto_embebidos_2.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -Xlinker -Map="PROYECTO.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T Proyecto_embebidos_2_Debug.ld -o "PROYECTO.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -Xlinker -Map="Proyecto_embebidos_2.map" -Xlinker --gc-sections -Xlinker -print-memory-usage -Xlinker --sort-section=alignment -Xlinker --cref -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -T Proyecto_embebidos_2_Debug.ld -o "Proyecto_embebidos_2.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) $(EXECUTABLES)$(OBJS)$(C_DEPS) PROYECTO.axf
+	-$(RM) Proyecto_embebidos_2.axf
 	-@echo ' '
 
 post-build:
 	-@echo 'Performing post-build steps'
-	-arm-none-eabi-size "PROYECTO.axf"; # arm-none-eabi-objcopy -v -O binary "PROYECTO.axf" "PROYECTO.bin" ; # checksum -p MK66FN2M0xxx18 -d "PROYECTO.bin";
+	-arm-none-eabi-size "Proyecto_embebidos_2.axf"; # arm-none-eabi-objcopy -v -O binary "Proyecto_embebidos_2.axf" "Proyecto_embebidos_2.bin" ; # checksum -p MK66FN2M0xxx18 -d "Proyecto_embebidos_2.bin";
 	-@echo ' '
 
-.PHONY: all clean dependents post-build
+.PHONY: all clean dependents main-build post-build
 
 -include ../makefile.targets
