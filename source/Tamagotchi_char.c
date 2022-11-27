@@ -13,7 +13,7 @@
 
 static tamagotchi_t pet;
 static uint8_t x=34,y=2;
-static emotions_state_t selector = HAPPY;
+static emotions_state_t selector = GENERAL;
 typedef struct
 {
     emotions_state_t emotion;
@@ -29,7 +29,7 @@ const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[7] =
         {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//DISSAPOINTMENT
         {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//ANGRY
         {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//NO
-        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//MUSIC
+        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC}},//MUSIC
 };
 void TAMAGOTCHI_FSM_sequency()
 {
@@ -114,6 +114,10 @@ void tamagotchi_move(uint8_t posx, uint8_t posy)
 void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet)
 {
     pet = tamagotchi_pet;
+}
+void tamagotchi_set_emotion(emotions_state_t emotion)
+{
+    selector = emotion;
 }
 
 

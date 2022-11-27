@@ -49,5 +49,5 @@ void TAMAGOTCHI_FSM_sequency();
 void tamagotchi_print(tamagotchi_t pet,uint8_t cont, uint8_t emotion);
 void tamagotchi_move(uint8_t posx, uint8_t posy);
 void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet);
-
+void tamagotchi_set_emotion(emotions_state_t emotion);
 #endif /* TAMAGOTCHI_CHAR_H_ */

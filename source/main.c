@@ -89,9 +89,16 @@ void initialize(void *pvParameters)
 }
 void Tamagotchi_char(void *pvParameteres)
 {
+    emotions_state_t emotion = GENERAL;
+    uint8_t a = 0;
     tamagotchi_set_pet(Robot_skin);
     while(1)
     {
+        if(a)
+        {
+            tamagotchi_set_emotion(emotion);
+            a = 0;
+        }
         TAMAGOTCHI_FSM_sequency();
         vTaskDelay(pdMS_TO_TICKS(1000));
 //        tamagotchi_print(Robot_skin,0,1);
