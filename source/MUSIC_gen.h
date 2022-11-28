@@ -53,8 +53,10 @@
 
 #define BASE_FREQ_IN_MS     500
 
-#define MUSIC_FTM           FTM3
-#define MUSIC_FTM_CHANNEL   kFTM_Chnl_2
+#define MUSIC_FTM           FTM2
+#define MUSIC_FTM_CHANNEL   kFTM_Chnl_0
+
+#define OFF                 0
 
 #define DEFAULT_NOTE_SIZE   7
 
@@ -85,6 +87,7 @@ typedef struct
 
 void MUSIC_initialize(void);
 void MUSIC_pnote(uint16_t freq);
+void MUSIC_off(void);
 void MUSIC_changeSong(song_t song);
 uint32_t MUSIC_playback(void);
 #endif /* MUSIC_GEN_H_ */
