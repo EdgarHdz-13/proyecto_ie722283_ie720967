@@ -5131,7 +5131,7 @@ LOAD linker stubs
  .debug_line    0x00010b57      0x9f5 ./component/serial_manager/fsl_component_serial_manager.o
  .debug_line    0x0001154c      0x7b0 ./component/serial_manager/fsl_component_serial_port_uart.o
 
-.debug_str      0x00000000    0xcb147
+.debug_str      0x00000000    0xcb146
  .debug_str     0x00000000    0xbc75a ./utilities/fsl_debug_console.o
                               0xbc89e (size before relaxing)
  .debug_str     0x000bc75a      0xb53 ./utilities/fsl_str.o
@@ -5148,45 +5148,45 @@ LOAD linker stubs
                               0xb6b6e (size before relaxing)
  .debug_str     0x000bfd4f      0x666 ./source/SPI.o
                               0xb5b8d (size before relaxing)
- .debug_str     0x000c03b5      0x34d ./source/Tamagotchi_char.o
-                               0x490f (size before relaxing)
- .debug_str     0x000c0702       0x46 ./source/Tamagotchi_skin.o
-                               0x4692 (size before relaxing)
- .debug_str     0x000c0748     0x116e ./source/main.o
-                              0xbc61e (size before relaxing)
- .debug_str     0x000c18b6       0x1f ./source/semihost_hardfault.o
+ .debug_str     0x000c03b5      0x34c ./source/Tamagotchi_char.o
+                               0x490e (size before relaxing)
+ .debug_str     0x000c0701       0x46 ./source/Tamagotchi_skin.o
+                               0x4691 (size before relaxing)
+ .debug_str     0x000c0747     0x116e ./source/main.o
+                              0xbc61d (size before relaxing)
+ .debug_str     0x000c18b5       0x1f ./source/semihost_hardfault.o
                                0x2dfd (size before relaxing)
- .debug_str     0x000c18d5      0x3a8 ./freertos/freertos_kernel/portable/MemMang/heap_4.o
+ .debug_str     0x000c18d4      0x3a8 ./freertos/freertos_kernel/portable/MemMang/heap_4.o
                                0x951c (size before relaxing)
- .debug_str     0x000c1c7d      0x840 ./freertos/freertos_kernel/portable/GCC/ARM_CM4F/port.o
+ .debug_str     0x000c1c7c      0x840 ./freertos/freertos_kernel/portable/GCC/ARM_CM4F/port.o
                                0x99b6 (size before relaxing)
- .debug_str     0x000c24bd      0x122 ./freertos/freertos_kernel/list.o
+ .debug_str     0x000c24bc      0x122 ./freertos/freertos_kernel/list.o
                                0x809b (size before relaxing)
- .debug_str     0x000c25df      0x897 ./freertos/freertos_kernel/queue.o
+ .debug_str     0x000c25de      0x897 ./freertos/freertos_kernel/queue.o
                                0xa2fd (size before relaxing)
- .debug_str     0x000c2e76     0x1c1a ./freertos/freertos_kernel/tasks.o
+ .debug_str     0x000c2e75     0x1c1a ./freertos/freertos_kernel/tasks.o
                                0xb097 (size before relaxing)
- .debug_str     0x000c4a90      0x5d3 ./freertos/freertos_kernel/timers.o
+ .debug_str     0x000c4a8f      0x5d3 ./freertos/freertos_kernel/timers.o
                                0xa804 (size before relaxing)
- .debug_str     0x000c5063     0x1f64 ./drivers/fsl_clock.o
+ .debug_str     0x000c5062     0x1f64 ./drivers/fsl_clock.o
                               0xb7ca9 (size before relaxing)
- .debug_str     0x000c6fc7     0x130d ./drivers/fsl_dspi.o
+ .debug_str     0x000c6fc6     0x130d ./drivers/fsl_dspi.o
                               0xb7601 (size before relaxing)
- .debug_str     0x000c82d4      0x9f7 ./drivers/fsl_ftm.o
+ .debug_str     0x000c82d3      0x9f7 ./drivers/fsl_ftm.o
                               0xb6a63 (size before relaxing)
- .debug_str     0x000c8ccb       0xcb ./drivers/fsl_gpio.o
+ .debug_str     0x000c8cca       0xcb ./drivers/fsl_gpio.o
                               0xb58a0 (size before relaxing)
- .debug_str     0x000c8d96      0xc92 ./drivers/fsl_i2c.o
+ .debug_str     0x000c8d95      0xc92 ./drivers/fsl_i2c.o
                               0xb6e96 (size before relaxing)
- .debug_str     0x000c9a28      0xe0b ./drivers/fsl_uart.o
+ .debug_str     0x000c9a27      0xe0b ./drivers/fsl_uart.o
                               0xb70fb (size before relaxing)
- .debug_str     0x000ca833      0x117 ./device/system_MK66F18.o
+ .debug_str     0x000ca832      0x117 ./device/system_MK66F18.o
                               0xb35a9 (size before relaxing)
- .debug_str     0x000ca94a      0x2ec ./component/uart/fsl_adapter_uart.o
+ .debug_str     0x000ca949      0x2ec ./component/uart/fsl_adapter_uart.o
                               0xb90e1 (size before relaxing)
- .debug_str     0x000cac36      0x40b ./component/serial_manager/fsl_component_serial_manager.o
+ .debug_str     0x000cac35      0x40b ./component/serial_manager/fsl_component_serial_manager.o
                               0xb910e (size before relaxing)
- .debug_str     0x000cb041      0x106 ./component/serial_manager/fsl_component_serial_port_uart.o
+ .debug_str     0x000cb040      0x106 ./component/serial_manager/fsl_component_serial_port_uart.o
                               0xb8e65 (size before relaxing)
 
 .comment        0x00000000       0x49

@@ -18,8 +18,8 @@
 #define UPPER_LIMIT_Y           1
 #define LOWER_LIMIT_Y           3
 
-#define UPPER_LIMIT_X           70
-#define LOWER_LIMIT_X           16
+#define UPPER_LIMIT_X           68
+#define LOWER_LIMIT_X           0
 
 #define RANDOM_X_RIGHT_MOVE     3
 #define RANDOM_X_LEFT_MOVE      -3
