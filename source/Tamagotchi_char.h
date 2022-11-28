@@ -19,7 +19,7 @@
 #define LOWER_LIMIT_Y           3
 
 #define UPPER_LIMIT_X           70
-#define LOWER_LIMIT_X           14
+#define LOWER_LIMIT_X           16
 
 #define RANDOM_X_RIGHT_MOVE     3
 #define RANDOM_X_LEFT_MOVE      -3
@@ -37,11 +37,11 @@ typedef enum
    ANGRY,
    NO,
    MUSIC,
-   DYING
+   DYING,
+   EATING
 }emotions_state_t;
 typedef struct
 {
-    emotions_state_t current_state;
     uint8_t general_size;
     uint8_t happy_size;
     uint8_t sad_size;
@@ -50,6 +50,7 @@ typedef struct
     uint8_t no_size;
     uint8_t music_size;
     uint8_t dying_size;
+    uint8_t eating_size;
 }emotions_t;
 typedef struct
 {
