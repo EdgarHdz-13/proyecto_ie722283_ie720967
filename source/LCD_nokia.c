@@ -10,6 +10,19 @@
 
 SemaphoreHandle_t g_spi_sem;
 
+static const uint8_t data[][5] =
+{
+	 {0x00, 0x00, 0x0e, 0x11, 0x21}
+	,{0x42, 0x21, 0x11, 0x0e, 0x00}
+	,{0x00, 0x3c, 0x42, 0x95, 0xa1}
+	,{0xa1, 0x95, 0x42, 0x3c, 0x00}
+};
+
+static const uint8_t bars[][4] =
+{
+	 {0xff, 0xff, 0x00, 0x00}
+};
+
 static const uint8_t ASCII[][5] =
 {
  {0x00, 0x00, 0x00, 0x00, 0x00} // 20
@@ -218,3 +231,65 @@ void LCD_nokia_delay(void)
 	}
 }
 
+void LCD_nokia_health(void)
+{
+	  uint16_t index = 0;
+	  uint16_t index2 = 0;
+
+	  LCD_nokia_goto_xy(0, 5);
+	  LCD_nokia_write_byte(LCD_DATA, 0x00); //Blank vertical line padding
+	  for (index2 = 0 ; index2 < 2 ; index2++)
+		  for (index = 0 ; index < 5 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, data[index2][index]);
+
+}
+
+void LCD_nokia_happiness(void)
+{
+	  uint16_t index = 0;
+	  uint16_t index2 = 0;
+
+	  LCD_nokia_goto_xy(40, 5);
+	  LCD_nokia_write_byte(LCD_DATA, 0x00); //Blank vertical line padding
+	  for (index2 = 2 ; index2 < 4 ; index2++)
+		  for (index = 0 ; index < 5 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, data[index2][index]);
+
+}
+
+void LCD_nokia_health_bars(uint8_t total_bars)
+{
+	  uint16_t index = 0;
+	  static uint8_t last_bars = 8;
+
+	  LCD_nokia_goto_xy(10, 5);
+	  /* clears bars */
+	  for(uint8_t i = 0; i<last_bars; i++)
+		  for (index = 0 ; index < 4 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, ASCII[' ' - 0x20][index]);
+	  last_bars = total_bars;
+
+	  LCD_nokia_goto_xy(12, 5);
+	  for(uint8_t i = 0; i<total_bars; i++)
+		  for (index = 0 ; index < 4 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, bars[0][index]);
+}
+
+void LCD_nokia_happiness_bars(uint8_t total_bars)
+{
+	  uint16_t index = 0;
+	  static uint8_t last_bars = 8;
+
+
+	  LCD_nokia_goto_xy(50, 5);
+	  /* clears bars */
+	  for(uint8_t i = 0; i<last_bars; i++)
+		  for (index = 0 ; index < 4 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, ASCII[' ' - 0x20][index]);
+	  last_bars = total_bars;
+
+	  LCD_nokia_goto_xy(52, 5);
+	  for(uint8_t i = 0; i<total_bars; i++)
+		  for (index = 0 ; index < 4 ; index++)
+			  LCD_nokia_write_byte(LCD_DATA, bars[0][index]);
+}

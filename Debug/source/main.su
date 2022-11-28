@@ -1,5 +1,5 @@
-../source/main.c:64:6:delay	16	static
-../source/main.c:68:6:music_task	24	static
-../source/main.c:78:6:initialize	16	static
-../source/main.c:90:6:Tamagotchi_char	24	static
-../source/main.c:121:5:main	16	static
+../source/main.c:69:6:delay	16	static
+../source/main.c:73:6:music_task	24	static
+../source/main.c:83:6:initialize	16	static
+../source/main.c:91:6:Tamagotchi_char	24	static
+../source/main.c:122:5:main	16	static

@@ -51,6 +51,8 @@
 #include "Tamagotchi_skin.h"
 #include "Tamagotchi_char.h"
 /* TODO: insert other definitions and declarations here. */
+
+#define MAX_BAR 7u
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
@@ -58,6 +60,9 @@ extern const song_t Song_of_the_storm_song;
 
 extern const uint8_t Robot[];
 extern tamagotchi_t Robot_skin;
+
+static uint16_t total_bars_health = MAX_BAR;
+static uint16_t total_bars_happiness = MAX_BAR;
 /*
  * @brief   Application entry point.
  */
@@ -79,10 +84,6 @@ void initialize(void *pvParameters)
 {
     MUSIC_initialize();
     MUSIC_changeSong(Song_of_the_storm_song);
-    SPI_config();
-    LCD_nokia_init();
-
-    LCD_nokia_clear();
 
 
     vTaskSuspend(NULL);
@@ -121,7 +122,27 @@ void Tamagotchi_char(void *pvParameteres)
 int main(void)
 {
 
+
+    SPI_config();
+    LCD_nokia_init();
+    LCD_nokia_clear();
+    LCD_nokia_goto_xy(0, 0);
+    LCD_nokia_send_char('A');
+
+    LCD_nokia_happiness();
+    LCD_nokia_health();
+    LCD_nokia_health_bars(total_bars_health);
+    LCD_nokia_happiness_bars(total_bars_happiness);
+
+    total_bars_happiness = 5;
+    total_bars_health = 3;
+    LCD_nokia_happiness_bars(total_bars_happiness);
+    LCD_nokia_health_bars(total_bars_health);
+
+
  	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
+
+
 	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");

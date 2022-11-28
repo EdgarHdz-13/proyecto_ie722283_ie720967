@@ -34,6 +34,13 @@ void LCD_nokia_send_string(uint8_t string []);
 /*It used in the initialization routine*/
 void LCD_nokia_delay(void);
 
+void LCD_nokia_health(void);
+
+void LCD_nokia_health_bars(uint8_t total_bars);
+
+void LCD_nokia_happiness(void);
+
+void LCD_nokia_happiness_bars(uint8_t total_bars);
 
 
 #endif /* LCD_NOKIA_H_ */
