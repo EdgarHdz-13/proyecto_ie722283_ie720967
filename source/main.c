@@ -56,8 +56,8 @@ extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
 extern const song_t Song_of_the_storm_song;
 
-extern const uint8_t Robot[];
 extern tamagotchi_t Robot_skin;
+extern tamagotchi_t Billotchi_skin;
 /*
  * @brief   Application entry point.
  */
@@ -98,9 +98,7 @@ void Tamagotchi_char(void *pvParameteres)
         tamagotchi_clear();
         tamagotchi_random_move();
         TAMAGOTCHI_FSM_sequency();
-
         vTaskDelay(pdMS_TO_TICKS(1000));
-
     }
 }
 
@@ -112,8 +110,6 @@ int main(void)
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");
     vTaskStartScheduler();
-
-
     while(1)
     {
 

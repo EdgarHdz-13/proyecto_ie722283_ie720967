@@ -36,7 +36,8 @@ typedef enum
    DISSAPOINTMENT,
    ANGRY,
    NO,
-   MUSIC
+   MUSIC,
+   DYING
 }emotions_state_t;
 typedef struct
 {
@@ -48,6 +49,7 @@ typedef struct
     uint8_t angry_size;
     uint8_t no_size;
     uint8_t music_size;
+    uint8_t dying_size;
 }emotions_t;
 typedef struct
 {

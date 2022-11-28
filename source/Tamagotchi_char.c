@@ -19,18 +19,19 @@ typedef struct
 {
     emotions_state_t emotion;
     void (*fptrPrint)(tamagotchi_t,uint8_t,emotions_state_t);
-    emotions_state_t next[7];
+    emotions_state_t next[8];
 }Tamagotchi_state_t;
 
-const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[7] =
+const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[8] =
 {
-        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC}},//GERNERAL
-        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//HAPPY
-        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,SAD,GENERAL,GENERAL,GENERAL,GENERAL}},//SAD
-        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//DISSAPOINTMENT
-        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//ANGRY
-        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//NO
-        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC}},//MUSIC
+        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC,DYING}},         //GERNERAL
+        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING}}, //HAPPY
+        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,SAD,GENERAL,GENERAL,GENERAL,GENERAL,DYING}},     //SAD
+        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING}}, //DISSAPOINTMENT
+        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING}}, //ANGRY
+        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING}}, //NO
+        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING}},   //MUSIC
+        {DYING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,SAD}}      //DYING
 };
 void TAMAGOTCHI_FSM_sequency(void)
 {
@@ -84,6 +85,13 @@ void TAMAGOTCHI_FSM_sequency(void)
     break;
     case MUSIC:
         if(cont+1 > pet.state.music_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
+    break;
+    case DYING:
+        if(cont+1 > pet.state.dying_size)
         {
             cont = 0;
             current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
