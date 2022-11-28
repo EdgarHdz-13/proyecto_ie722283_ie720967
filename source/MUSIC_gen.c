@@ -27,7 +27,7 @@ uint16_t g_music_time = 0;
 
 void MUSIC_initialize(void)
 {
-    const port_pin_config_t porte7_config = {/* Internal pull-up resistor is enabled */
+    const port_pin_config_t portb18_config = {/* Internal pull-up resistor is enabled */
                                                             kPORT_PullDisable,
                                                            /* Fast slew rate is configured */
                                                            kPORT_FastSlewRate,
@@ -39,17 +39,21 @@ void MUSIC_initialize(void)
                                                            kPORT_HighDriveStrength,
                                                            /* Pin is configured as PTA4 */
 
-														   kPORT_MuxAlt6,
+														   kPORT_MuxAlt3,
                                                            /* Pin Control Register fields [15:0] are not locked */
                                                            kPORT_UnlockRegister};
-    CLOCK_EnableClock(kCLOCK_PortE);
-    PORT_SetPinConfig(PORTE, 7u, &porte7_config);
-    FTM_pwm_init_detailed(FTM3,kFTM_Chnl_2, 30,0);
+    CLOCK_EnableClock(kCLOCK_PortB);
+    PORT_SetPinConfig(PORTB, 18u, &portb18_config);
+    FTM_pwm_init_detailed(MUSIC_FTM,MUSIC_FTM_CHANNEL, 30,0);
 }
 
 void MUSIC_pnote(uint16_t freq)
 {
     FTM_pwm_update(MUSIC_FTM, MUSIC_FTM_CHANNEL, freq, g_volume);
+}
+void MUSIC_off(void)
+{
+    FTM_pwm_update(MUSIC_FTM, MUSIC_FTM_CHANNEL, LA, OFF);
 }
 
 void MUSIC_changeSong(song_t song)

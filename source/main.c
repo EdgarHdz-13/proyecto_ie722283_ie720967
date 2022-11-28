@@ -50,7 +50,9 @@
 #include "SPI.h"
 #include "Tamagotchi_skin.h"
 #include "Tamagotchi_char.h"
+#include "semphr.h"
 /* TODO: insert other definitions and declarations here. */
+#define GET_ARGS(args,type) *((type*)args)
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
@@ -58,16 +60,17 @@ extern const song_t Song_of_the_storm_song;
 
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
+
 /*
  * @brief   Application entry point.
  */
 void music_task(void *pvParameters)
 {
-    uint32_t time;
+    uint32_t time = GET_ARGS(pvParameters,uint32_t);
     while(1)
     {
         time = MUSIC_playback();
-        vTaskDelay(time/portTICK_PERIOD_MS);
+        vTaskDelay((time)/portTICK_PERIOD_MS);
     }
 
 }
@@ -83,7 +86,7 @@ void initialize(void *pvParameters)
 
     vTaskSuspend(NULL);
 }
-void Tamagotchi_char(void *pvParameteres)
+void Tamagotchi_char(void *pvParameters)
 {
     emotions_state_t emotion = GENERAL;
     uint8_t a = 0;
@@ -104,11 +107,12 @@ void Tamagotchi_char(void *pvParameteres)
 
 int main(void)
 {
+    uint32_t time;
 
  	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
-	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
+	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
-    PRINTF("Hello World\n");
+
     vTaskStartScheduler();
     while(1)
     {
