@@ -61,10 +61,6 @@ extern tamagotchi_t Robot_skin;
 /*
  * @brief   Application entry point.
  */
-void delay(void)
-{
-	for(int i=0;i<200000;i++){};
-}
 void music_task(void *pvParameters)
 {
     uint32_t time;
@@ -99,22 +95,12 @@ void Tamagotchi_char(void *pvParameteres)
             tamagotchi_set_emotion(emotion);
             a = 0;
         }
+        tamagotchi_clear();
+        tamagotchi_random_move();
         TAMAGOTCHI_FSM_sequency();
+
         vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,1);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,2);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,3);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,4);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,5);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,6);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,1,6);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
+
     }
 }
 
@@ -130,7 +116,6 @@ int main(void)
 
     while(1)
     {
-        delay();
 
     }
     return 0 ;
