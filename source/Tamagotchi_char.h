@@ -69,4 +69,8 @@ void tamagotchi_move_center(void);
 void tamagotchi_random_move(void);
 void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet);
 void tamagotchi_set_emotion(emotions_state_t emotion);
+uint8_t tamagotchi_get_x_position();
+uint8_t tamagotchi_get_y_position();
+
+
 #endif /* TAMAGOTCHI_CHAR_H_ */
