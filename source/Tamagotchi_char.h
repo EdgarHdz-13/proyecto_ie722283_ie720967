@@ -38,7 +38,10 @@ typedef enum
    NO,
    MUSIC,
    DYING,
-   EATING
+   EATING,
+   SLEEPING,
+   FLYING,
+   BATH
 }emotions_state_t;
 typedef struct
 {
@@ -51,6 +54,9 @@ typedef struct
     uint8_t music_size;
     uint8_t dying_size;
     uint8_t eating_size;
+    uint8_t sleeping_size;
+    uint8_t flying_size;
+    uint8_t bath_size;
 }emotions_t;
 typedef struct
 {

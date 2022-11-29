@@ -14,7 +14,6 @@ RM := rm -rf
 -include freertos/freertos_kernel/portable/MemMang/subdir.mk
 -include freertos/freertos_kernel/portable/GCC/ARM_CM4F/subdir.mk
 -include freertos/freertos_kernel/subdir.mk
--include drivers/freertos/subdir.mk
 -include drivers/subdir.mk
 -include device/subdir.mk
 -include component/uart/subdir.mk

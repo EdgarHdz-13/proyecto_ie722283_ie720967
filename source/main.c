@@ -90,7 +90,7 @@ void Tamagotchi_char(void *pvParameters)
 {
     emotions_state_t emotion = GENERAL;
     uint8_t a = 0;
-    tamagotchi_set_pet(Billotchi_skin);
+    tamagotchi_set_pet(Robot_skin);
     while(1)
     {
         if(a)
