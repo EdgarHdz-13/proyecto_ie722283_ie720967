@@ -192,5 +192,13 @@ void tamagotchi_set_emotion(emotions_state_t emotion)
 {
     selector = emotion;
 }
+uint8_t tamagotchi_get_x_position()
+{
+    return x;
+}
+uint8_t tamagotchi_get_y_position()
+{
+    return y;
+}
 
 
