@@ -17,17 +17,12 @@
 #define B_PIN       1U
 
 /** PORTC */
-#define B0_PIN      5U
+#define B0_PIN      3U
 #define B1_PIN      4U
-#define B5_PIN      11U
-#define B6_PIN      10U
+#define B2_PIN      16U
+#define B3_PIN      8U
+#define B4_PIN      12U
 
-/** PORTB */
-#define B2_PIN      3U
-#define B4_PIN      11U
-
-/** PORTD */
-#define B3_PIN      3U
 
 /** Switch */
 #define SW2_PORT    PORTC
@@ -39,15 +34,11 @@
 #define SW3_GPIO    GPIOA
 
 typedef enum {
-    SW2,
-    SW3,
     B0,
     B1,
     B2,
     B3,
     B4,
-    B5,
-    B6
 }buttons_t;
 
 /********************************************************************************************/
