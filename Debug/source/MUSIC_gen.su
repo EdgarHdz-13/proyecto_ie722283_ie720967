@@ -1,5 +1,5 @@
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos 2\Tareas\Proyecto_embebidos_2\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
-C:\Users\Edgar\Documents\MCUXpressoIDE_11.6.0_8187\Embebidos 2\Tareas\Proyecto_embebidos_2\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
 ../source/MUSIC_gen.c:28:6:MUSIC_initialize	16	static
 ../source/MUSIC_gen.c:50:6:MUSIC_pnote	16	static
 ../source/MUSIC_gen.c:54:6:MUSIC_off	8	static
