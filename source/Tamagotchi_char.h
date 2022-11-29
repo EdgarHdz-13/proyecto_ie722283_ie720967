@@ -66,6 +66,12 @@ typedef struct
     uint16_t    length; //In bits 4 = 16, 5 = 32, 6 = 64
 }tamagotchi_t;
 
+typedef struct
+{
+    uint8_t     *deadscene;
+    uint8_t    length; //In bits 4 = 16, 5 = 32, 6 = 64
+}deadscene_t;
+
 
 void TAMAGOTCHI_FSM_sequency();
 void tamagotchi_print(tamagotchi_t pet,uint8_t cont, uint8_t emotion);

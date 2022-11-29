@@ -226,5 +226,3 @@ uint8_t tamagotchi_get_y_position()
 {
     return y;
 }
-
-
