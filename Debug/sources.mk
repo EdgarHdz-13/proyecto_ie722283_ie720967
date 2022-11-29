@@ -26,4 +26,5 @@ freertos/freertos_kernel/portable/MemMang \
 source \
 startup \
 utilities \
+drivers/freertos \
 
