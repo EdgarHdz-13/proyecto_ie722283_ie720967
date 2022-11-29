@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../source/BMI160_i2c.c \
 ../source/FTM_pwm.c \
 ../source/LCD_nokia.c \
 ../source/LCD_nokia_images.c \
@@ -12,10 +13,12 @@ C_SRCS += \
 ../source/SPI.c \
 ../source/Tamagotchi_char.c \
 ../source/Tamagotchi_skin.c \
+../source/i2c_tools.c \
 ../source/main.c \
 ../source/semihost_hardfault.c 
 
 OBJS += \
+./source/BMI160_i2c.o \
 ./source/FTM_pwm.o \
 ./source/LCD_nokia.o \
 ./source/LCD_nokia_images.o \
@@ -24,10 +27,12 @@ OBJS += \
 ./source/SPI.o \
 ./source/Tamagotchi_char.o \
 ./source/Tamagotchi_skin.o \
+./source/i2c_tools.o \
 ./source/main.o \
 ./source/semihost_hardfault.o 
 
 C_DEPS += \
+./source/BMI160_i2c.d \
 ./source/FTM_pwm.d \
 ./source/LCD_nokia.d \
 ./source/LCD_nokia_images.d \
@@ -36,6 +41,7 @@ C_DEPS += \
 ./source/SPI.d \
 ./source/Tamagotchi_char.d \
 ./source/Tamagotchi_skin.d \
+./source/i2c_tools.d \
 ./source/main.d \
 ./source/semihost_hardfault.d 
 

@@ -8,9 +8,11 @@ C_SRCS += \
 ../drivers/fsl_common.c \
 ../drivers/fsl_common_arm.c \
 ../drivers/fsl_dspi.c \
+../drivers/fsl_dspi_freertos.c \
 ../drivers/fsl_ftm.c \
 ../drivers/fsl_gpio.c \
 ../drivers/fsl_i2c.c \
+../drivers/fsl_i2c_freertos.c \
 ../drivers/fsl_rtc.c \
 ../drivers/fsl_smc.c \
 ../drivers/fsl_uart.c 
@@ -20,9 +22,11 @@ OBJS += \
 ./drivers/fsl_common.o \
 ./drivers/fsl_common_arm.o \
 ./drivers/fsl_dspi.o \
+./drivers/fsl_dspi_freertos.o \
 ./drivers/fsl_ftm.o \
 ./drivers/fsl_gpio.o \
 ./drivers/fsl_i2c.o \
+./drivers/fsl_i2c_freertos.o \
 ./drivers/fsl_rtc.o \
 ./drivers/fsl_smc.o \
 ./drivers/fsl_uart.o 
@@ -32,9 +36,11 @@ C_DEPS += \
 ./drivers/fsl_common.d \
 ./drivers/fsl_common_arm.d \
 ./drivers/fsl_dspi.d \
+./drivers/fsl_dspi_freertos.d \
 ./drivers/fsl_ftm.d \
 ./drivers/fsl_gpio.d \
 ./drivers/fsl_i2c.d \
+./drivers/fsl_i2c_freertos.d \
 ./drivers/fsl_rtc.d \
 ./drivers/fsl_smc.d \
 ./drivers/fsl_uart.d 
