@@ -50,37 +50,38 @@
 #include "SPI.h"
 #include "Tamagotchi_skin.h"
 #include "Tamagotchi_char.h"
+#include "semphr.h"
 /* TODO: insert other definitions and declarations here. */
+
 
 #define MAX_BAR 7u
 #define DELAY_BARS 30000u
+#define GET_ARGS(args,type) *((type*)args)
+
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
 extern const song_t Song_of_the_storm_song;
 
-extern const uint8_t Robot[];
 extern tamagotchi_t Robot_skin;
+extern tamagotchi_t Billotchi_skin;
 
 static uint16_t total_bars_health = MAX_BAR;
 static uint16_t total_bars_happiness = MAX_BAR;
 static uint8_t flag_bar_health = 0;
 static uint8_t flag_bar_happiness = 0;
 static menu_state_t menu_state = food;
+
 /*
  * @brief   Application entry point.
  */
-void delay(void)
-{
-	for(int i=0;i<200000;i++){};
-}
 void music_task(void *pvParameters)
 {
-    uint32_t time;
+    uint32_t time = GET_ARGS(pvParameters,uint32_t);
     while(1)
     {
         time = MUSIC_playback();
-        vTaskDelay(time/portTICK_PERIOD_MS);
+        vTaskDelay((time)/portTICK_PERIOD_MS);
     }
 
 }
@@ -92,11 +93,11 @@ void initialize(void *pvParameters)
 
     vTaskSuspend(NULL);
 }
-void Tamagotchi_char(void *pvParameteres)
+void Tamagotchi_char(void *pvParameters)
 {
     emotions_state_t emotion = GENERAL;
     uint8_t a = 0;
-    tamagotchi_set_pet(Robot_skin);
+    tamagotchi_set_pet(Billotchi_skin);
     while(1)
     {
         if(a)
@@ -104,22 +105,10 @@ void Tamagotchi_char(void *pvParameteres)
             tamagotchi_set_emotion(emotion);
             a = 0;
         }
+        tamagotchi_clear();
+        tamagotchi_random_move();
         TAMAGOTCHI_FSM_sequency();
         vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,1);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,2);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,3);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,4);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,5);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,0,6);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
-//        tamagotchi_print(Robot_skin,1,6);
-//        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -128,6 +117,7 @@ void menu_task(void *pvParameters);
 
 int main(void)
 {
+    uint32_t time;
 
 
     SPI_config();
@@ -148,16 +138,15 @@ int main(void)
 
  	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
 
+
  	xTaskCreate(menu_task, "menu", 200, NULL,3, NULL);
-	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
+
+	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);n
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
-    PRINTF("Hello World\n");
+
     vTaskStartScheduler();
-
-
     while(1)
     {
-        delay();
 
     }
     return 0 ;

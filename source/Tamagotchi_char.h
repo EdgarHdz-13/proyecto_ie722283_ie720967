@@ -12,8 +12,21 @@
 #define TAMAGOTCHI_CHAR_H_
 
 #include "stdint.h"
-#define CENTER_X    34
-#define CENTER_Y    2
+#define CENTER_X                34
+#define CENTER_Y                2
+
+#define UPPER_LIMIT_Y           1
+#define LOWER_LIMIT_Y           3
+
+#define UPPER_LIMIT_X           68
+#define LOWER_LIMIT_X           0
+
+#define RANDOM_X_RIGHT_MOVE     3
+#define RANDOM_X_LEFT_MOVE      -3
+
+#define RANDOM_Y_UP_MOVE        -1
+#define RANDOM_Y_DOWN_MOVE      1
+
 
 typedef enum
 {
@@ -23,11 +36,12 @@ typedef enum
    DISSAPOINTMENT,
    ANGRY,
    NO,
-   MUSIC
+   MUSIC,
+   DYING,
+   EATING
 }emotions_state_t;
 typedef struct
 {
-    emotions_state_t current_state;
     uint8_t general_size;
     uint8_t happy_size;
     uint8_t sad_size;
@@ -35,19 +49,28 @@ typedef struct
     uint8_t angry_size;
     uint8_t no_size;
     uint8_t music_size;
+    uint8_t dying_size;
+    uint8_t eating_size;
 }emotions_t;
 typedef struct
 {
     uint8_t     *skin;
     emotions_t  state;
     uint8_t     hungry;
-    uint16_t    length;
+    uint16_t    length; //In bits 4 = 16, 5 = 32, 6 = 64
 }tamagotchi_t;
 
 
 void TAMAGOTCHI_FSM_sequency();
 void tamagotchi_print(tamagotchi_t pet,uint8_t cont, uint8_t emotion);
+void tamagotchi_clear(void);
 void tamagotchi_move(uint8_t posx, uint8_t posy);
+void tamagotchi_move_center(void);
+void tamagotchi_random_move(void);
 void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet);
 void tamagotchi_set_emotion(emotions_state_t emotion);
+uint8_t tamagotchi_get_x_position();
+uint8_t tamagotchi_get_y_position();
+
+
 #endif /* TAMAGOTCHI_CHAR_H_ */

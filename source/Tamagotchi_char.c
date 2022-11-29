@@ -10,28 +10,31 @@
 #include "LCD_nokia.h"
 #include "stdint.h"
 #include "Bits.h"
+#include "stdlib.h"
 
 static tamagotchi_t pet;
-static uint8_t x=34,y=2;
+static uint8_t x=32,y=2;
 static emotions_state_t selector = GENERAL;
 typedef struct
 {
     emotions_state_t emotion;
     void (*fptrPrint)(tamagotchi_t,uint8_t,emotions_state_t);
-    emotions_state_t next[7];
+    emotions_state_t next[9];
 }Tamagotchi_state_t;
 
-const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[7] =
+const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[9] =
 {
-        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC}},//GERNERAL
-        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//HAPPY
-        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//SAD
-        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//DISSAPOINTMENT
-        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//ANGRY
-        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL}},//NO
-        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC}},//MUSIC
+        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC,DYING,           EATING}},//GERNERAL
+        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//HAPPY
+        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,SAD,GENERAL,GENERAL,GENERAL,GENERAL,DYING,       EATING}},//SAD
+        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//DISSAPOINTMENT
+        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//ANGRY
+        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//NO
+        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING}},//MUSIC
+        {DYING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,SAD,       EATING}},//DYING
+        {EATING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING}} //EATING
 };
-void TAMAGOTCHI_FSM_sequency()
+void TAMAGOTCHI_FSM_sequency(void)
 {
     /** Initial state of FSM */
     static emotions_state_t current_state = GENERAL;
@@ -54,7 +57,7 @@ void TAMAGOTCHI_FSM_sequency()
         }
     break;
     case SAD:
-        if(cont+1 > pet.state.happy_size)
+        if(cont+1 > pet.state.sad_size)
         {
             cont = 0;
             current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
@@ -88,6 +91,19 @@ void TAMAGOTCHI_FSM_sequency()
             current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
         }
     break;
+    case DYING:
+        if(cont+1 > pet.state.dying_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
+    break;
+    case EATING:
+        if(cont+1 > pet.state.eating_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
     }
     /** Use the actual function pointer  */
     TAMAGOTCHI_FSM_Moore[current_state].fptrPrint(pet,cont,current_state);
@@ -101,15 +117,72 @@ void tamagotchi_print(tamagotchi_t pet,uint8_t cont, emotions_state_t emotion)
     {
         for (contx = 0; contx < TAMAGOTCHI_LENGTH; contx++) {
             LCD_nokia_goto_xy(x+contx, y+conty);
-            LCD_nokia_write_byte(LCD_DATA,(uint8_t)((*(pet.skin+(posx+contx)+((posy+conty)<<5))))); //y<<5 == y*32
+            LCD_nokia_write_byte(LCD_DATA,(uint8_t)((*(pet.skin+(posx+contx)+((posy+conty)<<pet.length))))); //y<<5 == y*32
         }
     }
 }
-
+void tamagotchi_clear(void)
+{
+    uint8_t conty=0,contx=0;
+    for(conty = 0;conty < TAMAGOTCHI_HEIGHT;conty++)
+    {
+        for (contx = 0; contx < TAMAGOTCHI_LENGTH; contx++) {
+            LCD_nokia_goto_xy(x+contx, y+conty);
+            LCD_nokia_write_byte(LCD_DATA,0x00); //y<<5 == y*32
+        }
+    }
+}
 void tamagotchi_move(uint8_t posx, uint8_t posy)
 {
     x = posx;
     y = posy;
+}
+void tamagotchi_move_add(int8_t addx, int8_t addy)
+{
+    x = x+addx;
+    y = y+addy;
+}
+void tamagotchi_move_center(void)
+{
+    tamagotchi_move(CENTER_X, CENTER_Y);
+}
+void tamagotchi_random_move(void)
+{
+    uint32_t random = rand() & 0x0F;
+    if((random & 0x02) == (0x02) || (random & 0x04) == (0x04))
+    {
+        if((random & 0x01) == 0x01)      //Move right
+        {
+            if(x < UPPER_LIMIT_X)
+            {
+                tamagotchi_move_add(RANDOM_X_RIGHT_MOVE,0);
+            }
+        }
+        else                            //Move left
+        {
+            if(x > LOWER_LIMIT_X)
+            {
+                tamagotchi_move_add(RANDOM_X_LEFT_MOVE,0);
+            }
+        }
+    }
+    if((random & 0x0E)  == (0x0E))
+    {
+        if((random & 0x01) == 0x01)      //Move up
+        {
+            if(y > UPPER_LIMIT_Y)
+            {
+                tamagotchi_move_add(0,RANDOM_Y_UP_MOVE);
+            }
+        }
+        else                            //Move down
+        {
+            if(y < LOWER_LIMIT_Y)
+            {
+                tamagotchi_move_add(0,RANDOM_Y_DOWN_MOVE);
+            }
+        }
+    }
 }
 void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet)
 {
@@ -118,6 +191,14 @@ void tamagotchi_set_pet(tamagotchi_t tamagotchi_pet)
 void tamagotchi_set_emotion(emotions_state_t emotion)
 {
     selector = emotion;
+}
+uint8_t tamagotchi_get_x_position()
+{
+    return x;
+}
+uint8_t tamagotchi_get_y_position()
+{
+    return y;
 }
 
 
