@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_port.h:443:20:PORT_SetPinInterruptConfig	24	static
+=======
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:374:20:PORT_SetPinMux	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:389:20:PORT_EnablePinsDigitalFilter	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:443:20:PORT_SetPinInterruptConfig	24	static
+>>>>>>> main
 ../board/pin_mux.c:181:6:BOARD_InitBootPins	8	static
 ../board/pin_mux.c:204:6:BOARD_InitPins	8	static
 ../board/pin_mux.c:244:6:BOARD_InitBUTTONsPins	16	static

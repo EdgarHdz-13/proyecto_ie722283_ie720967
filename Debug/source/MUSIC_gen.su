@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+=======
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_clock.h:725:20:CLOCK_EnableClock	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_port.h:271:20:PORT_SetPinConfig	32	static
+>>>>>>> main
 ../source/MUSIC_gen.c:28:6:MUSIC_initialize	16	static
 ../source/MUSIC_gen.c:50:6:MUSIC_pnote	16	static
-../source/MUSIC_gen.c:55:6:MUSIC_changeSong	16	static
-../source/MUSIC_gen.c:61:10:MUSIC_playback	16	static
+../source/MUSIC_gen.c:54:6:MUSIC_off	8	static
+../source/MUSIC_gen.c:59:6:MUSIC_changeSong	16	static
+../source/MUSIC_gen.c:65:10:MUSIC_playback	16	static

@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_ftm.h:437:36:FTM_CalculateCounterClkDiv	32	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_ftm.h:731:20:FTM_StartTimer	24	static
 C:\DimensionB\SE II\PROYECTO\drivers/fsl_ftm.h:745:20:FTM_StopTimer	16	static
+=======
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_ftm.h:437:36:FTM_CalculateCounterClkDiv	32	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_ftm.h:731:20:FTM_StartTimer	24	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_ftm.h:745:20:FTM_StopTimer	16	static
+>>>>>>> main
 ../source/FTM_pwm.c:11:6:FTM_pwm_init_duty_50	64	static
 ../source/FTM_pwm.c:56:6:FTM_pwm_init	64	static
 ../source/FTM_pwm.c:101:6:FTM_pwm_updateHz	64	static
