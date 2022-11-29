@@ -15,6 +15,18 @@
 #define DATA_OR_CMD_PIN 12
 #define RESET_PIN 13
 #define CE 6
+
+typedef enum
+{
+	food,
+	sleep,
+	water,
+	play,
+	music,
+	restroom
+}menu_state_t;
+
+
 /*It configures the LCD*/
 void LCD_nokia_init(void);
 /*It writes a byte in the LCD memory. The place of writting is the last place that was indicated by LCDNokia_gotoXY. In the reset state
@@ -41,6 +53,8 @@ void LCD_nokia_health_bars(uint8_t total_bars);
 void LCD_nokia_happiness(void);
 
 void LCD_nokia_happiness_bars(uint8_t total_bars);
+
+void LCD_nokia_menu(menu_state_t state);
 
 
 #endif /* LCD_NOKIA_H_ */

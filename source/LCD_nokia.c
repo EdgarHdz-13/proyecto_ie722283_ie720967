@@ -18,10 +18,21 @@ static const uint8_t data[][5] =
 	,{0xa1, 0x95, 0x42, 0x3c, 0x00}
 };
 
+static const uint8_t menu[][10] =
+{
+	 {0x00, 0x0f, 0x18, 0xff, 0x18, 0x0f, 0x00, 0x1f, 0xff, 0x00} // food
+	 ,{0x3c, 0x42, 0x8d, 0x85, 0xa1, 0x85, 0x8d, 0x42, 0x3c, 0x00} // sleep
+	 ,{0x00, 0x38, 0x44, 0x82, 0x81, 0x82, 0x44, 0x38, 0x00, 0x00} // water
+	 ,{0xff, 0x81, 0x99, 0xbd, 0x99, 0x81, 0xa1, 0x89, 0x81, 0xff} // game
+	 ,{0x60, 0x7f, 0x01, 0x61, 0x7f, 0x00, 0x60, 0x7f, 0x01, 0x01} // music
+	 ,{0xff, 0x85, 0x85, 0x85, 0x9f, 0x90, 0x90, 0xf0, 0x00, 0x00} // restroom
+};
+
 static const uint8_t bars[][4] =
 {
 	 {0xff, 0xff, 0x00, 0x00}
 };
+
 
 static const uint8_t ASCII[][5] =
 {
@@ -293,3 +304,81 @@ void LCD_nokia_happiness_bars(uint8_t total_bars)
 		  for (index = 0 ; index < 4 ; index++)
 			  LCD_nokia_write_byte(LCD_DATA, bars[0][index]);
 }
+
+void LCD_nokia_menu(menu_state_t state)
+{
+	uint16_t index = 0;
+	static menu_state_t last_state;
+	switch(last_state)
+	{
+		case food:
+			LCD_nokia_goto_xy(0, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+		case sleep:
+			LCD_nokia_goto_xy(14, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+		case water:
+			LCD_nokia_goto_xy(28, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+		case play:
+			LCD_nokia_goto_xy(42, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+		case music:
+			LCD_nokia_goto_xy(56, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+		case restroom:
+			LCD_nokia_goto_xy(70, 0);
+			for (index = 0 ; index < 11 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, 0x00);
+			break;
+
+
+	}
+	last_state = state;
+	switch(state)
+	{
+		case food:
+			LCD_nokia_goto_xy(0, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		case sleep:
+			LCD_nokia_goto_xy(14, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		case water:
+			LCD_nokia_goto_xy(28, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		case play:
+			LCD_nokia_goto_xy(42, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		case music:
+			LCD_nokia_goto_xy(56, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		case restroom:
+			LCD_nokia_goto_xy(70, 0);
+			for (index = 0 ; index < 10 ; index++)
+				LCD_nokia_write_byte(LCD_DATA, menu[state][index]);
+			break;
+		default:
+			break;
+	}
+}
+

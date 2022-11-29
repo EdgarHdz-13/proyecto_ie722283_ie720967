@@ -53,6 +53,7 @@
 /* TODO: insert other definitions and declarations here. */
 
 #define MAX_BAR 7u
+#define DELAY_BARS 30000u
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
@@ -63,6 +64,9 @@ extern tamagotchi_t Robot_skin;
 
 static uint16_t total_bars_health = MAX_BAR;
 static uint16_t total_bars_happiness = MAX_BAR;
+static uint8_t flag_bar_health = 0;
+static uint8_t flag_bar_happiness = 0;
+static menu_state_t menu_state = food;
 /*
  * @brief   Application entry point.
  */
@@ -119,6 +123,9 @@ void Tamagotchi_char(void *pvParameteres)
     }
 }
 
+void state_bars_task(void *pvParameters);
+void menu_task(void *pvParameters);
+
 int main(void)
 {
 
@@ -126,8 +133,6 @@ int main(void)
     SPI_config();
     LCD_nokia_init();
     LCD_nokia_clear();
-    LCD_nokia_goto_xy(0, 0);
-    LCD_nokia_send_char('A');
 
     LCD_nokia_happiness();
     LCD_nokia_health();
@@ -139,10 +144,11 @@ int main(void)
     LCD_nokia_happiness_bars(total_bars_happiness);
     LCD_nokia_health_bars(total_bars_health);
 
+    LCD_nokia_menu(menu_state);
 
  	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
 
-
+ 	xTaskCreate(menu_task, "menu", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, NULL,2, NULL);
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
     PRINTF("Hello World\n");
@@ -157,3 +163,34 @@ int main(void)
     return 0 ;
 }
 
+void state_bars_task(void *pvParameters)
+{
+    while(1)
+    {
+    	if(flag_bar_happiness && (flag_bar_happiness <= MAX_BAR))
+    		total_bars_happiness++;
+    	else
+    		total_bars_happiness--; //if bars equals zero pet dies
+
+    	if(flag_bar_health && (flag_bar_health <= MAX_BAR))
+    		total_bars_health++;
+    	else
+    		total_bars_health--; //if bars equals zero pet dies
+
+        vTaskDelay(pdMS_TO_TICKS(DELAY_BARS));
+    }
+
+}
+
+void menu_task(void *pvParameters)
+{
+	uint8_t i = 0;
+	while(1)
+	{
+		LCD_nokia_menu(i);
+		i++;
+		if(i == 6)
+			i = 0;
+		vTaskDelay(pdMS_TO_TICKS(1000));
+	}
+}

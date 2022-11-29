@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../source/FTM_pwm.c \
+../source/GPIO_ctrl.c \
 ../source/LCD_nokia.c \
 ../source/LCD_nokia_images.c \
 ../source/MUSIC_album.c \
@@ -17,6 +18,7 @@ C_SRCS += \
 
 OBJS += \
 ./source/FTM_pwm.o \
+./source/GPIO_ctrl.o \
 ./source/LCD_nokia.o \
 ./source/LCD_nokia_images.o \
 ./source/MUSIC_album.o \
@@ -29,6 +31,7 @@ OBJS += \
 
 C_DEPS += \
 ./source/FTM_pwm.d \
+./source/GPIO_ctrl.d \
 ./source/LCD_nokia.d \
 ./source/LCD_nokia_images.d \
 ./source/MUSIC_album.d \
