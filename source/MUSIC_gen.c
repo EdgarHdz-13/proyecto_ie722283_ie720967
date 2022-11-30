@@ -90,7 +90,7 @@ void MUSIC_music_volume(volume_t updown)
     }
     else
     {
-        g_volume = g_volume-MUSIC_CHANGE_VOLUME < MIN_VOL || g_volume-MUSIC_CHANGE_VOLUME > MAX_VOL ? g_volume-MUSIC_CHANGE_VOLUME : MIN_VOL;
+        g_volume = (g_volume-MUSIC_CHANGE_VOLUME) > MIN_VOL && (g_volume-MUSIC_CHANGE_VOLUME) < MAX_VOL ? g_volume-MUSIC_CHANGE_VOLUME : MIN_VOL;
     }
 }
 

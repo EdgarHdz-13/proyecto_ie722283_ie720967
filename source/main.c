@@ -456,8 +456,10 @@ void b2_callback(void)
 void b3_callback(void)
 {
 	//volume down
+	MUSIC_music_volume(TURN_DOWN);
 }
 void b4_callback(void)
 {
 	//volume up
+	MUSIC_music_volume(TURN_UP);
 }
