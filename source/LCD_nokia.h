@@ -7,6 +7,7 @@
 
 #define SCREENW 84
 #define SCREENH 48
+#define SCREENALL 504
 
 #define LCD_X 84
 #define LCD_Y 48
