@@ -11,4 +11,12 @@
 #include "stdint.h"
 #include "MUSIC_gen.h"
 
+static const uint8_t songs_to_play[][11] =
+{
+	 {"Aura Song"}
+	 ,{"In Forest"}
+	 ,{"Storm Song"}
+	 ,{"Pet Dies"}
+};
+
 #endif /* MUSIC_ALBUM_H_ */

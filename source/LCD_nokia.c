@@ -220,6 +220,16 @@ void LCD_nokia_send_string(uint8_t characters []) {
 	  LCD_nokia_send_char(*characters++);
 }
 
+void LCD_nokia_clear_string(uint8_t string [], uint8_t x, uint8_t y)
+{
+	LCD_nokia_goto_xy(x, y);
+	while (*string)
+	  {
+		  LCD_nokia_send_char("A");
+		  *string++;
+	  }
+}
+
 void LCD_nokia_clear(void) {
 	uint16_t index = 0;
   for (index = 0 ; index < (LCD_X * LCD_Y / 8) ; index++)
@@ -270,6 +280,7 @@ void LCD_nokia_happiness(void)
 
 void LCD_nokia_health_bars(uint8_t total_bars)
 {
+	  LCD_nokia_health();
 	  uint16_t index = 0;
 	  static uint8_t last_bars = 8;
 
@@ -288,6 +299,7 @@ void LCD_nokia_health_bars(uint8_t total_bars)
 
 void LCD_nokia_happiness_bars(uint8_t total_bars)
 {
+      LCD_nokia_happiness();
 	  uint16_t index = 0;
 	  static uint8_t last_bars = 8;
 

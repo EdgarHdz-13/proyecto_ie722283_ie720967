@@ -19,20 +19,23 @@ typedef struct
 {
     emotions_state_t emotion;
     void (*fptrPrint)(tamagotchi_t,uint8_t,emotions_state_t);
-    emotions_state_t next[9];
+    emotions_state_t next[12];
 }Tamagotchi_state_t;
 
-const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[9] =
+const Tamagotchi_state_t TAMAGOTCHI_FSM_Moore[12] =
 {
-        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC,DYING,           EATING}},//GERNERAL
-        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//HAPPY
-        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,SAD,GENERAL,GENERAL,GENERAL,GENERAL,DYING,       EATING}},//SAD
-        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//DISSAPOINTMENT
-        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//ANGRY
-        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING}},//NO
-        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING}},//MUSIC
-        {DYING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,SAD,       EATING}},//DYING
-        {EATING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING}} //EATING
+        {GENERAL,           &tamagotchi_print,{GENERAL,HAPPY,SAD,DISSAPOINTMENT,ANGRY,NO,MUSIC,DYING,           EATING,SLEEPING,FLYING,BATH}},//GERNERAL
+        {HAPPY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING,SLEEPING,FLYING,BATH}},//HAPPY
+        {SAD,               &tamagotchi_print,{GENERAL,GENERAL,SAD,GENERAL,GENERAL,GENERAL,GENERAL,DYING,       EATING,SLEEPING,FLYING,BATH}},//SAD
+        {DISSAPOINTMENT,    &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING,SLEEPING,FLYING,BATH}},//DISSAPOINTMENT
+        {ANGRY,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING,SLEEPING,FLYING,BATH}},//ANGRY
+        {NO,                &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,DYING,   EATING,SLEEPING,FLYING,BATH}},//NO
+        {MUSIC,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING,SLEEPING,FLYING,BATH}},//MUSIC
+        {DYING,             &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,SAD,       EATING,SLEEPING,FLYING,BATH}},//DYING
+        {EATING,            &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING,SLEEPING,FLYING,BATH}},//EATING
+        {SLEEPING,          &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING,SLEEPING,FLYING,BATH}},//SLEEPING
+        {FLYING,            &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING,SLEEPING,FLYING,BATH}},//FLYING
+        {BATH,              &tamagotchi_print,{GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,GENERAL,MUSIC,DYING,     EATING,SLEEPING,FLYING,BATH}} //BATH
 };
 void TAMAGOTCHI_FSM_sequency(void)
 {
@@ -104,6 +107,29 @@ void TAMAGOTCHI_FSM_sequency(void)
             cont = 0;
             current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
         }
+    break;
+    case SLEEPING:
+        if(cont+1 > pet.state.sleeping_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
+    break;
+    case FLYING:
+        if(cont+1 > pet.state.flying_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
+    break;
+    case BATH:
+        if(cont+1 > pet.state.bath_size)
+        {
+            cont = 0;
+            current_state = TAMAGOTCHI_FSM_Moore[current_state].next[selector];
+        }
+    break;
+
     }
     /** Use the actual function pointer  */
     TAMAGOTCHI_FSM_Moore[current_state].fptrPrint(pet,cont,current_state);
@@ -200,5 +226,3 @@ uint8_t tamagotchi_get_y_position()
 {
     return y;
 }
-
-

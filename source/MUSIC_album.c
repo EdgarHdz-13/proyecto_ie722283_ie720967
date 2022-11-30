@@ -54,3 +54,20 @@ const song_t Song_of_the_storm_song =
         Song_of_the_storm_note,
         26
 };
+
+        /*  SOL, SOLME, DO, MI, REMI, SOLME, SI SIME    8
+         *  LA, DO, MI, LA, SOL, DO, RE, MI, LA, DO,    10
+         *  FA, LA, SOLLA, DO, RE, FA, MI, SOLME, DO,   9
+         *  MI, RE, LAME, SIME, RE                      5
+         */
+note_t Game_over_note[] = {
+        {SOL,QUARTER},{SOLME,QUARTER},{DO,QUARTER},{MI,QUARTER},{REMI,QUARTER},{SOLME,QUARTER},{SI,QUARTER},{SIME,QUARTER},
+        {LA,QUARTER},{DO,QUARTER},{MI,QUARTER},{LA,QUARTER},{SOL,QUARTER},{DO,QUARTER},{RE,QUARTER},{MI,QUARTER},{LA,QUARTER},{DO,QUARTER},
+        {FA,QUARTER},{LA,QUARTER},{SOLLA,QUARTER},{DO,QUARTER},{RE,QUARTER},{FA,QUARTER},{MI,QUARTER},{SOLME,QUARTER},{DO,QUARTER},
+        {MI,QUARTER},{RE,QUARTER},{LAME,QUARTER},{SIME,QUARTER},{RE,QUARTER}
+};
+const song_t Game_over_song =
+{
+        Game_over_note,
+        32
+};
