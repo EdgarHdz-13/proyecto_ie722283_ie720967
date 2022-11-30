@@ -16,6 +16,7 @@ C_SRCS += \
 ../source/Tamagotchi_char.c \
 ../source/Tamagotchi_skin.c \
 ../source/i2c_tools.c \
+../source/mahony.c \
 ../source/main.c \
 ../source/semihost_hardfault.c 
 
@@ -32,6 +33,7 @@ OBJS += \
 ./source/Tamagotchi_char.o \
 ./source/Tamagotchi_skin.o \
 ./source/i2c_tools.o \
+./source/mahony.o \
 ./source/main.o \
 ./source/semihost_hardfault.o 
 
@@ -48,6 +50,7 @@ C_DEPS += \
 ./source/Tamagotchi_char.d \
 ./source/Tamagotchi_skin.d \
 ./source/i2c_tools.d \
+./source/mahony.d \
 ./source/main.d \
 ./source/semihost_hardfault.d 
 
