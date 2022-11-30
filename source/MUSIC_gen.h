@@ -86,8 +86,8 @@ typedef struct
 
 typedef enum
 {
-    TURN_UP,
-    TURN_DOWN
+    TURN_DOWN,
+	TURN_UP
 }volume_t;
 
 
