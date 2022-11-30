@@ -82,5 +82,16 @@ uint32_t MUSIC_playback(void)
 
     return  note_time*BASE_TO_MULTIPLY;
 }
+void MUSIC_music_volume(volume_t updown)
+{
+    if(updown)
+    {
+        g_volume = g_volume+MUSIC_CHANGE_VOLUME<MAX_VOL ? g_volume+MUSIC_CHANGE_VOLUME : MAX_VOL;
+    }
+    else
+    {
+        g_volume = g_volume-MUSIC_CHANGE_VOLUME < MIN_VOL || g_volume-MUSIC_CHANGE_VOLUME > MAX_VOL ? g_volume-MUSIC_CHANGE_VOLUME : MIN_VOL;
+    }
+}
 
 

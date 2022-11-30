@@ -57,6 +57,7 @@
 #define MUSIC_FTM_CHANNEL   kFTM_Chnl_0
 
 #define OFF                 0
+#define MUSIC_CHANGE_VOLUME 5
 
 #define DEFAULT_NOTE_SIZE   7
 
@@ -83,6 +84,11 @@ typedef struct
     uint16_t size;
 }song_t;
 
+typedef enum
+{
+    TURN_UP,
+    TURN_DOWN
+}volume_t;
 
 
 void MUSIC_initialize(void);
@@ -90,4 +96,5 @@ void MUSIC_pnote(uint16_t freq);
 void MUSIC_off(void);
 void MUSIC_changeSong(song_t song);
 uint32_t MUSIC_playback(void);
+void MUSIC_music_volume(volume_t updown);
 #endif /* MUSIC_GEN_H_ */
