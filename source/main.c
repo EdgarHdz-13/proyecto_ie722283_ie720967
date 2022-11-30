@@ -55,7 +55,7 @@
 #include "fsl_gpio.h"
 /* TODO: insert other definitions and declarations here. */
 
-
+#define DEADSCENE_DELAY         500
 #define MAX_BAR 7u
 #define DELAY_BARS 10000u
 #define GET_ARGS(args,type) *((type*)args)
@@ -77,6 +77,9 @@ typedef enum
 	song4
 }music_state_t;
 
+
+
+
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
@@ -85,7 +88,13 @@ extern const song_t Game_over_song;
 
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
+
 static emotions_state_t emotion = GENERAL;
+
+extern deadscene_t deadscene_struct;
+
+SemaphoreHandle_t xBinarySemDeadscene = NULL;
+
 
 static uint16_t total_bars_health = MAX_BAR;
 static uint16_t total_bars_happiness = MAX_BAR;
@@ -106,6 +115,7 @@ void state_bars_task(void *pvParameters);
 void initialize(void *pvParameters);
 void menu_select(void);
 void print_control_task(void *pvParameters);
+void Tamagotchi_deadscene(void *pvParameters);
 
 void b0_callback(void);
 void b1_callback(void);
@@ -135,6 +145,7 @@ int main(void)
  	xTaskCreate(state_bars_task, "BARS", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
+	xTaskCreate(Tamagotchi_deadscene, "TAMAGOTCHI DEADSCENE", 100, NULL, 8, NULL);
 
     vTaskStartScheduler();
     while(1)
@@ -177,8 +188,9 @@ void music_task(void *pvParameters)
 void initialize(void *pvParameters)
 {
     MUSIC_initialize();
-    MUSIC_changeSong(Song_of_the_storm_song);
+	MUSIC_changeSong(Song_of_the_storm_song);
     tamagotchi_set_pet(Billotchi_skin);
+
 
     SPI_config();
     LCD_nokia_init();
@@ -227,7 +239,58 @@ void Tamagotchi_char(void *pvParameters)
             tamagotchi_set_emotion(emotion);
             a = 0;
         }
+
+
+        TAMAGOTCHI_FSM_sequency();
+		if(1) // flag that says pet died
+		{
+			xSemaphoreGive(xBinarySemDeadscene);
+			vTaskSuspend(NULL);
+		}
         vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+}
+
+void Tamagotchi_deadscene(void *pvParameters)
+{
+    uint16_t cont = 0;
+    uint8_t message[] = "Quieres continuar?";
+    while(1)
+    {
+        xSemaphoreTake(xBinarySemDeadscene,portMAX_DELAY);
+        MUSIC_changeSong(Game_over_song);
+        tamagotchi_clear();
+        tamagotchi_move_center();
+        tamagotchi_set_emotion(DYING);
+        TAMAGOTCHI_FSM_sequency();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        tamagotchi_clear();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        TAMAGOTCHI_FSM_sequency();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        tamagotchi_clear();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        TAMAGOTCHI_FSM_sequency();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        tamagotchi_clear();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        TAMAGOTCHI_FSM_sequency();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        tamagotchi_clear();
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        while(1)
+        {
+            if(cont >= deadscene_struct.length)
+            {
+                cont = 0;
+            }
+            LCD_nokia_goto_xy(0, 0);
+            LCD_nokia_bitmap((deadscene_struct.deadscene+(cont*504)));
+            cont++;
+            vTaskDelay(pdMS_TO_TICKS(DEADSCENE_DELAY));
+        }
+
     }
 }
 
