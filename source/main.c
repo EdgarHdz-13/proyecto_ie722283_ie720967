@@ -53,12 +53,15 @@
 #include "semphr.h"
 #include "GPIO_ctrl.h"
 #include "fsl_gpio.h"
+#include "event_groups.h"
 /* TODO: insert other definitions and declarations here. */
 
 #define DEADSCENE_DELAY         500
 #define MAX_BAR 7u
 #define DELAY_BARS 10000u
 #define GET_ARGS(args,type) *((type*)args)
+
+
 
 typedef enum
 {
@@ -77,6 +80,13 @@ typedef enum
 	song4
 }music_state_t;
 
+typedef struct
+{
+    acc_data_t macc;
+    gyr_data_t mgyr;
+    MahonyAHRSEuler_t output;
+}mahony_params_t;
+
 extern const song_t scale_song;
 extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
@@ -86,11 +96,11 @@ extern const song_t Game_over_song;
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
 
-static emotions_state_t emotion = GENERAL;
-
 extern deadscene_t deadscene_struct;
 
+SemaphoreHandle_t g_xSemaphore_mahony = NULL;
 SemaphoreHandle_t xBinarySemDeadscene = NULL;
+EventGroupHandle_t init_event;
 
 
 static uint16_t total_bars_health = MAX_BAR;
@@ -122,24 +132,20 @@ void b2_callback(void);
 void b3_callback(void);
 void b4_callback(void);
 
+#define PRINT  (1U << 0UL)
+#define BARS  (1U << 1UL)
+#define MUSIC   (1U << 2UL)
+#define CHAR  (1U << 3UL)
 
 int main(void)
 {
     uint32_t time;
 
-//    LCD_nokia_happiness();
-//    LCD_nokia_health();
-//    LCD_nokia_health_bars(total_bars_health);
-//    LCD_nokia_happiness_bars(total_bars_happiness);
-//
-//    total_bars_happiness = 5;
-//    total_bars_health = 3;
-//    LCD_nokia_happiness_bars(total_bars_happiness);
-//    LCD_nokia_health_bars(total_bars_health);
-//
-//    LCD_nokia_menu(menu_state);
+    init_event = xEventGroupCreate();
+    g_xSemaphore_mahony = xSemaphoreCreateBinary();
+    xBinarySemDeadscene = xSemaphoreCreateBinary();
 
- 	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
+ 	xTaskCreate(initialize, "INIT", 100, NULL, 1, NULL);
  	xTaskCreate(print_control_task, "PRINT", 200, NULL,3, NULL);
  	xTaskCreate(state_bars_task, "BARS", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
@@ -156,6 +162,8 @@ int main(void)
 
 void state_bars_task(void *pvParameters)
 {
+    const EventBits_t BitToWaitFor = BARS;
+    xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
     while(1)
     {
     	if(flag_bar_happiness && (total_bars_happiness <= MAX_BAR))
@@ -177,6 +185,8 @@ void state_bars_task(void *pvParameters)
 void music_task(void *pvParameters)
 {
     uint32_t time = GET_ARGS(pvParameters,uint32_t);
+    const EventBits_t BitToWaitFor = MUSIC;
+    xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
     while(1)
     {
         time = MUSIC_playback();
@@ -202,11 +212,13 @@ void initialize(void *pvParameters)
     GPIO_callback_assign(B3, b3_callback);
     GPIO_callback_assign(B4, b4_callback);
 
-
+    xEventGroupSetBits(init_event,PRINT | BARS | MUSIC | CHAR );
     vTaskSuspend(NULL);
 }
 void Tamagotchi_char(void *pvParameters)
 {
+    const EventBits_t BitToWaitFor = CHAR;
+    xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
     while(1)
     {
     	switch(game_state)
@@ -288,6 +300,9 @@ void print_control_task(void *pvParameters)
 {
 	uint8_t select_pet_text[] = "Choose pet";
 	uint8_t select_pet_text_e[] = "           ";
+	const EventBits_t BitToWaitFor = PRINT;
+	xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
+
     while(1)
     {
 		LCD_nokia_goto_xy(0, 0);

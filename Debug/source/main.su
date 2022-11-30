@@ -1,22 +1,16 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-../source/main.c:73:6:delay	16	static
-../source/main.c:77:6:music_task	24	static
-../source/main.c:87:6:initialize	16	static
-../source/main.c:95:6:Tamagotchi_char	24	static
-../source/main.c:129:5:main	16	static
-../source/main.c:166:6:state_bars_task	16	static
-../source/main.c:185:6:menu_task	24	static
-=======
-../source/main.c:67:6:music_task	24	static
-../source/main.c:77:6:initialize	16	static
-../source/main.c:89:6:Tamagotchi_char	24	static
-../source/main.c:108:5:main	24	static
->>>>>>> main
-=======
-../source/main.c:72:6:music_task	24	static
-../source/main.c:82:6:initialize	16	static
-../source/main.c:94:6:Tamagotchi_char	32	static
-../source/main.c:115:6:Tamagotchi_deadscene	48	static
-../source/main.c:158:5:main	24	static
->>>>>>> main
+C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1679:22:__NVIC_EnableIRQ	16	static
+C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1809:22:__NVIC_SetPriority	16	static
+C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_common_arm.h:499:24:EnableIRQ	24	static
+../source/main.c:135:5:main	24	static
+../source/main.c:158:6:state_bars_task	32	static
+../source/main.c:180:6:music_task	32	static
+../source/main.c:192:6:initialize	24	static
+../source/main.c:213:6:Tamagotchi_char	32	static
+../source/main.c:251:6:Tamagotchi_deadscene	48	static
+../source/main.c:294:6:print_control_task	56	static
+../source/main.c:336:6:menu_select	8	static
+../source/main.c:367:6:b0_callback	16	static
+../source/main.c:403:6:b1_callback	8	static
+../source/main.c:443:6:b2_callback	8	static
+../source/main.c:466:6:b3_callback	8	static
+../source/main.c:471:6:b4_callback	8	static
