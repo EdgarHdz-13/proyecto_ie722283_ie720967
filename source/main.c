@@ -54,6 +54,10 @@
 #include "GPIO_ctrl.h"
 #include "fsl_gpio.h"
 #include "event_groups.h"
+#include "mahony.h"
+#include "BMI160_i2c.h"
+#include "math.h"
+#include "i2c_tools.h"
 /* TODO: insert other definitions and declarations here. */
 
 #define DEADSCENE_DELAY         500
@@ -61,7 +65,11 @@
 #define DELAY_BARS 10000u
 #define GET_ARGS(args,type) *((type*)args)
 
-
+#define PROM_NUMBER     1
+#define PRINT  (1U << 0UL)
+#define BARS  (1U << 1UL)
+#define MUSIC   (1U << 2UL)
+#define CHAR  (1U << 3UL)
 
 typedef enum
 {
@@ -132,20 +140,29 @@ void b2_callback(void);
 void b3_callback(void);
 void b4_callback(void);
 
-#define PRINT  (1U << 0UL)
-#define BARS  (1U << 1UL)
-#define MUSIC   (1U << 2UL)
-#define CHAR  (1U << 3UL)
+void mahony_angle(void *Pvparameters);
+void read_sensor(void *Pvparameters);
+
+
 
 int main(void)
 {
     uint32_t time;
+     mahony_params_t parameter = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
+     BOARD_InitBootPins();
+     BOARD_InitBootClocks();
+     BOARD_InitBootPeripherals();
+     /* Init FSL debug console. */
+     BOARD_InitDebugConsole();
 
     init_event = xEventGroupCreate();
     g_xSemaphore_mahony = xSemaphoreCreateBinary();
     xBinarySemDeadscene = xSemaphoreCreateBinary();
 
- 	xTaskCreate(initialize, "INIT", 100, NULL, 1, NULL);
+    xTaskCreate(mahony_angle,"mahony",      200, &parameter, 7,NULL);
+    xTaskCreate(read_sensor, "read",               250, &parameter, 8, NULL);
+
+ 	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
  	xTaskCreate(print_control_task, "PRINT", 200, NULL,3, NULL);
  	xTaskCreate(state_bars_task, "BARS", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
@@ -158,6 +175,70 @@ int main(void)
 
     }
     return 0 ;
+}
+
+void mahony_angle(void *Pvparameters)
+{
+    mahony_params_t* params = (mahony_params_t*) Pvparameters;
+    while(1)
+    {
+        xSemaphoreTake(g_xSemaphore_mahony,portMAX_DELAY);
+
+        /* For unknown reason when params arrives here it has values E-16 we don't know where
+         * or how but this validation will work */
+        params->macc.acc_x = fabsf(params->macc.acc_x) < 0.00001 ? 0 : params->macc.acc_x;
+        params->macc.acc_y = fabsf(params->macc.acc_y) < 0.00001 ? 0 : params->macc.acc_y;
+        params->macc.acc_z = fabsf(params->macc.acc_z) < 0.00001 ? 0 : params->macc.acc_z;
+
+        params->mgyr.gyr_x = fabsf(params->mgyr.gyr_x) < 0.00001 ? 0 : params->mgyr.gyr_x;
+        params->mgyr.gyr_y = fabsf(params->mgyr.gyr_y) < 0.00001 ? 0 : params->mgyr.gyr_y;
+        params->mgyr.gyr_z = fabsf(params->mgyr.gyr_z) < 0.00001 ? 0 : params->mgyr.gyr_z;
+
+
+        params->output = MahonyAHRSupdateIMU(params->mgyr.gyr_x, params->mgyr.gyr_y, params->mgyr.gyr_z, params->macc.acc_x, params->macc.acc_y, params->macc.acc_z);
+        PRINTF("ROLL:%d, PITCH:%d, YAW:%d\n\r",(uint32_t)params->output.roll,(uint32_t)params->output.pitch,(uint32_t)params->output.yaw);
+    }
+
+}
+
+void read_sensor(void *Pvparameters)
+{
+    acc_data_t acc,promacc={0.0,0.0,0.0};
+    gyr_data_t gyr,promgyr={0.0,0.0,0.0};
+    mahony_params_t* params = (mahony_params_t*)Pvparameters;
+    uint8_t cont=0;
+
+    while(1)
+    {
+        acc =  BMI160_get_accel();
+        gyr = BMI160_get_gyr();
+
+        promacc.acc_x += acc.acc_x;
+        promacc.acc_y += acc.acc_y;
+        promacc.acc_z += acc.acc_z;
+        promgyr.gyr_x += gyr.gyr_x;
+        promgyr.gyr_y += gyr.gyr_y;
+        promgyr.gyr_z += gyr.gyr_z;
+        cont++;
+        if(cont >= PROM_NUMBER)
+        {
+            params->macc.acc_x = promacc.acc_x/cont;
+            params->macc.acc_y = promacc.acc_y/cont;
+            params->macc.acc_z = promacc.acc_z/cont;
+            params->mgyr.gyr_x = promgyr.gyr_x/cont;
+            params->mgyr.gyr_y = promgyr.gyr_y/cont;
+            params->mgyr.gyr_z = promgyr.gyr_z/cont;
+            promacc.acc_x = 0.0;
+            promacc.acc_y = 0.0;
+            promacc.acc_z = 0.0;
+            promgyr.gyr_x = 0.0;
+            promgyr.gyr_y = 0.0;
+            promgyr.gyr_z = 0.0;
+            xSemaphoreGive(g_xSemaphore_mahony);
+            cont = 0;
+        }
+        vTaskDelay( 40 / portTICK_RATE_MS ); //For the filter it needs 4 samples, so we can collect the info 4*data rates
+    }
 }
 
 void state_bars_task(void *pvParameters)
@@ -212,7 +293,25 @@ void initialize(void *pvParameters)
     GPIO_callback_assign(B3, b3_callback);
     GPIO_callback_assign(B4, b4_callback);
 
+    i2c_init(I2C_BMI_MASTER);
+
+    BMI160_gyr_config(GYR_NORMAL_CONFIG| GYR_BWP_OSR4 | GYR_DATA_RATE_100, GYR_RANGE_125);
+    BMI160_accel_config(ACC_BWP_OSR4 | ACC_data_rate_100, ACC_RANGE_2g);
+
+
+    BMI160_cmd(CMD_ACC_SET_PMU_MODE | CMD_NORMAL);
+    vTaskDelay( 5 / portTICK_RATE_MS );
+
+    BMI160_cmd(CMD_GYR_SET_PMU_MODE | CMD_NORMAL);
+    vTaskDelay( 80 / portTICK_RATE_MS );
+
+    BMI160_cmd(CMD_START_FOC);
+    vTaskDelay( 5 / portTICK_RATE_MS );
+
+    BMI160_calibrate_gyr_acc(100,TRUE);
+
     xEventGroupSetBits(init_event,PRINT | BARS | MUSIC | CHAR );
+
     vTaskSuspend(NULL);
 }
 void Tamagotchi_char(void *pvParameters)
@@ -230,9 +329,13 @@ void Tamagotchi_char(void *pvParameters)
     	case main_menu:
             tamagotchi_clear();
             if(flag_pet_actions)
-            	tamagotchi_move_center();
+            {
+                tamagotchi_move_center();
+            }
             else
-            	tamagotchi_random_move();
+            {
+                tamagotchi_random_move();
+            }
     		break;
     	case game_menu:
     		break;

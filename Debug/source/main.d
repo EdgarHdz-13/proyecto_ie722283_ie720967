@@ -41,7 +41,12 @@ source/main.o source/main.d: ../source/main.c \
  C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/task.h \
  ../source/GPIO_ctrl.h ../source/Bits.h \
  C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/event_groups.h \
- C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/timers.h
+ C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/timers.h \
+ ../source/mahony.h ../source/BMI160_i2c.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c.h ../source/i2c_tools.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c_freertos.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/portable.h \
+ C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c.h
 C:\Embebidos\ 2\Tareas\PROYECTO\board/board.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\board/clock_config.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_common.h:
@@ -90,3 +95,10 @@ C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/task.h:
 ../source/Bits.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/event_groups.h:
 C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/timers.h:
+../source/mahony.h:
+../source/BMI160_i2c.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c.h:
+../source/i2c_tools.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c_freertos.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\freertos\freertos_kernel\include/portable.h:
+C:\Embebidos\ 2\Tareas\PROYECTO\drivers/fsl_i2c.h:

@@ -1,16 +1,18 @@
 C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1679:22:__NVIC_EnableIRQ	16	static
 C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1809:22:__NVIC_SetPriority	16	static
 C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_common_arm.h:499:24:EnableIRQ	24	static
-../source/main.c:135:5:main	24	static
-../source/main.c:158:6:state_bars_task	32	static
-../source/main.c:180:6:music_task	32	static
-../source/main.c:192:6:initialize	24	static
-../source/main.c:213:6:Tamagotchi_char	32	static
-../source/main.c:251:6:Tamagotchi_deadscene	48	static
-../source/main.c:294:6:print_control_task	56	static
-../source/main.c:336:6:menu_select	8	static
-../source/main.c:367:6:b0_callback	16	static
-../source/main.c:403:6:b1_callback	8	static
-../source/main.c:443:6:b2_callback	8	static
-../source/main.c:466:6:b3_callback	8	static
-../source/main.c:471:6:b4_callback	8	static
+../source/main.c:148:5:main	56	static
+../source/main.c:180:6:mahony_angle	32	static
+../source/main.c:204:6:read_sensor	72	static
+../source/main.c:244:6:state_bars_task	32	static
+../source/main.c:266:6:music_task	32	static
+../source/main.c:278:6:initialize	24	static
+../source/main.c:317:6:Tamagotchi_char	32	static
+../source/main.c:359:6:Tamagotchi_deadscene	48	static
+../source/main.c:402:6:print_control_task	56	static
+../source/main.c:444:6:menu_select	8	static
+../source/main.c:475:6:b0_callback	16	static
+../source/main.c:511:6:b1_callback	8	static
+../source/main.c:551:6:b2_callback	8	static
+../source/main.c:574:6:b3_callback	8	static
+../source/main.c:579:6:b4_callback	8	static
