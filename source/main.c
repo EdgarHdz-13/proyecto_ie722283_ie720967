@@ -416,12 +416,7 @@ void Tamagotchi_game(void *pvParameters)
 
 	while(1)
 	{
-		if(flag_game_end)
-		{
-			posx = 20;
-			posy = 0;
-			pos_tamx=43;
-		}
+		flag_game_end = 0;
 		if(flag_game_back)
 			vTaskSuspend(handle_game);
 		/*    */
@@ -432,12 +427,25 @@ void Tamagotchi_game(void *pvParameters)
 				LCD_nokia_goto_xy(last_posx, last_posy);
 				LCD_nokia_send_char(' ');
 				flag_game_end = 1;
+				posx = 20;
+				posy = 0;
+				pos_tamx = 33;
+				if((total_bars_happiness >= 6) && (total_bars_health >= 6))
+					tamagotchi_set_emotion(HAPPY);
+				else if((total_bars_happiness <= 1) && (total_bars_health <= 1))
+					tamagotchi_set_emotion(DYING);
+				else if( total_bars_health <= 2)
+					tamagotchi_set_emotion(ANGRY);
+				else if((total_bars_happiness <= 3) && (total_bars_health <= 3))
+					tamagotchi_set_emotion(SAD);
+				else if( total_bars_happiness <= 4)
+					tamagotchi_set_emotion(DISSAPOINTMENT);
 				vTaskSuspend(handle_game);
 			}
 		tamagotchi_move(pos_tamx, 2);
-		if(params->output.roll < -2 && (pos_tamx<61))
+		if(params->output.roll > 2 && (pos_tamx<61))
 			pos_tamx+=7;
-		else if(params->output.roll > 2 && (pos_tamx>7))
+		else if(params->output.roll < -2 && (pos_tamx>7))
 			pos_tamx-=7;
 		TAMAGOTCHI_FSM_sequency();
 		/*    */
@@ -739,17 +747,6 @@ void b2_callback(void)
 		break;
 	case game_menu:
 		flag_game_back = 1;
-		if((total_bars_happiness >= 6) && (total_bars_health >= 6))
-			tamagotchi_set_emotion(HAPPY);
-		else if((total_bars_happiness <= 1) && (total_bars_health <= 1))
-			tamagotchi_set_emotion(DYING);
-		else if( total_bars_health <= 2)
-			tamagotchi_set_emotion(ANGRY);
-		else if((total_bars_happiness <= 3) && (total_bars_health <= 3))
-			tamagotchi_set_emotion(SAD);
-		else if( total_bars_happiness <= 4)
-			tamagotchi_set_emotion(DISSAPOINTMENT);
-		break;
 		game_state = main_menu;
 		break;
 	case music_menu:
