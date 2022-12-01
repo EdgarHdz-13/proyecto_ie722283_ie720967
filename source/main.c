@@ -53,6 +53,7 @@
 #include "semphr.h"
 #include "GPIO_ctrl.h"
 #include "fsl_gpio.h"
+#include "fsl_clock.h"
 #include "event_groups.h"
 #include "mahony.h"
 #include "BMI160_i2c.h"
@@ -70,6 +71,20 @@
 #define BARS  (1U << 1UL)
 #define MUSIC   (1U << 2UL)
 #define CHAR  (1U << 3UL)
+
+#define MCG_IRCLK_DISABLE 0U                   /*!< MCGIRCLK disabled */
+#define MCG_PLL_DISABLE 0U                     /*!< MCGPLLCLK disabled */
+#define OSC_CAP0P 0U                           /*!< Oscillator 0pF capacitor load */
+#define OSC_ER_CLK_DISABLE 0U                  /*!< Disable external reference clock */
+#define SIM_CLKOUT_SEL_FLEXBUS_CLK 0U          /*!< CLKOUT pin clock select: FlexBus clock */
+#define SIM_ENET_1588T_CLK_SEL_OSCERCLK_CLK 2U /*!< SDHC clock select: OSCERCLK clock */
+#define SIM_ENET_RMII_CLK_SEL_EXTAL_CLK 0U     /*!< SDHC clock select: Core/system clock */
+#define SIM_OSC32KSEL_RTC32KCLK_CLK 2U         /*!< OSC32KSEL select: RTC32KCLK clock (32.768kHz) */
+#define SIM_PLLFLLSEL_IRC48MCLK_CLK 3U         /*!< PLLFLL select: IRC48MCLK clock */
+#define SIM_PLLFLLSEL_MCGPLLCLK_CLK 1U         /*!< PLLFLL select: MCGPLLCLK clock */
+#define SIM_SDHC_CLK_SEL_OSCERCLK_CLK 2U       /*!< SDHC clock select: OSCERCLK clock */
+#define SIM_TRACE_CLK_SEL_CORE_SYSTEM_CLK 1U   /*!< Trace clock select: Core/system clock */
+#define SIM_USB_CLK_120000000HZ 120000000U     /*!< Input SIM frequency for USB: 120000000Hz */
 
 typedef enum
 {
@@ -130,6 +145,7 @@ void music_task(void *pvParameters);
 void state_bars_task(void *pvParameters);
 void initialize(void *pvParameters);
 void menu_select(void);
+void system_clock_120MHz(void);
 void print_control_task(void *pvParameters);
 void Tamagotchi_deadscene(void *pvParameters);
 void Tamagotchi_char(void *pvParameters);
@@ -147,8 +163,8 @@ void read_sensor(void *Pvparameters);
 
 int main(void)
 {
-    uint32_t time;
      mahony_params_t parameter = {{0.0,0.0,0.0},{0.0,0.0,0.0},{0.0,0.0,0.0}};
+     uint32_t time;
      BOARD_InitBootPins();
      BOARD_InitBootClocks();
      BOARD_InitBootPeripherals();
@@ -277,7 +293,8 @@ void music_task(void *pvParameters)
 }
 void initialize(void *pvParameters)
 {
-    SPI_config();
+	//system_clock_120MHz();
+	SPI_config();
     LCD_nokia_init();
     LCD_nokia_clear();
 	MUSIC_initialize();
@@ -439,6 +456,38 @@ void print_control_task(void *pvParameters)
 		}
     	vTaskDelay(pdMS_TO_TICKS(200));
     }
+}
+
+void system_clock_120MHz(void)
+{
+    mcg_pll_config_t    pll0Config =
+            {
+                .enableMode = MCG_PLL_DISABLE, /* MCGPLLCLK disabled */
+                .prdiv      = 0x13U,            /* PLL Reference divider: divided by 20 */
+                .vdiv       = 0x18U,            /*  VCO divider: multiplied by 48 */
+            }; /** (50E6/20) * 24 =  60E6 Hz*/
+
+
+    const osc_config_t osc_config = {
+    .freq        = 50000000U,    /* Oscillator frequency: 50000000Hz */
+    .capLoad     = (OSC_CAP0P),  /* Oscillator capacity load: 0pF */
+    .workMode    = kOSC_ModeExt, /* Use external clock */
+    .oscerConfig = {
+        .enableMode =
+            kOSC_ErClkEnable, /* Enable external reference clock, disable external reference clock in STOP mode */
+    }};
+
+
+    CLOCK_SetSimSafeDivs();
+
+    CLOCK_InitOsc0(&osc_config);
+
+    CLOCK_SetXtal0Freq(osc_config.freq);
+
+    CLOCK_SetFbiMode(kMCG_Dmx32Default, kMCG_DrsLow, NULL);
+    CLOCK_SetFbeMode(0, kMCG_Dmx32Default, kMCG_DrsLow, NULL);
+    CLOCK_SetPbeMode(kMCG_PllClkSelPll0, &pll0Config);
+    CLOCK_SetPeeMode();
 }
 
 void menu_select(void)
