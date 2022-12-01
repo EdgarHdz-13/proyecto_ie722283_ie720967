@@ -71,3 +71,17 @@ const song_t Game_over_song =
         Game_over_note,
         32
 };
+    /*  LA,  LAME,  SOL,   SOLME,   FASOL, FASOLME, MI, MIME    8
+     *  SOL, SOLME, FASOL, FASOLME, MI,    MIME,    RE, REME    8
+     */
+
+note_t Metroid_title_theme_note[] = {
+        {LA,EIGHTH}, {LAME,EIGHTH}, {SOL,EIGHTH}, {SOLME,EIGHTH}, {FASOL,EIGHTH}, {FASOLME,EIGHTH}, {MI,EIGHTH}, {MIME,EIGHTH},
+        {SOL,EIGHTH}, {SOLME,EIGHTH}, {FASOL,EIGHTH}, {FASOLME,EIGHTH}, {MI}, {MIME,EIGHTH}, {RE,EIGHTH}, {REME,EIGHTH}
+};
+const song_t Metroid_title_theme_song =
+{
+        Metroid_title_theme_note,
+        16
+};
+
