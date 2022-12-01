@@ -115,6 +115,7 @@ extern const song_t Aura_Lee_song;
 extern const song_t Away_in_the_Deep_Forest_song;
 extern const song_t Song_of_the_storm_song;
 extern const song_t Game_over_song;
+extern const song_t Metroid_title_theme_song;
 
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
