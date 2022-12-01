@@ -122,6 +122,7 @@ extern const song_t Metroid_title_theme_song;
 
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
+extern tamagotchi_t Slime_skin;
 
 extern deadscene_t deadscene_struct;
 
@@ -415,7 +416,12 @@ void Tamagotchi_game(void *pvParameters)
 
 	while(1)
 	{
-		flag_game_end = 0;
+		if(flag_game_end)
+		{
+			posx = 20;
+			posy = 0;
+			pos_tamx=43;
+		}
 		if(flag_game_back)
 			vTaskSuspend(handle_game);
 		/*    */
@@ -633,8 +639,13 @@ void b0_callback(void)
 
 		else if(button_selection == 1)
 		{
-			button_selection = 0;
+			button_selection++;
 			tamagotchi_set_pet(Billotchi_skin);
+		}
+		else if(button_selection == 2)
+		{
+			button_selection = 0;
+			tamagotchi_set_pet(Slime_skin);
 		}
 		break;
 	case main_menu:
@@ -728,10 +739,31 @@ void b2_callback(void)
 		break;
 	case game_menu:
 		flag_game_back = 1;
+		if((total_bars_happiness >= 6) && (total_bars_health >= 6))
+			tamagotchi_set_emotion(HAPPY);
+		else if((total_bars_happiness <= 1) && (total_bars_health <= 1))
+			tamagotchi_set_emotion(DYING);
+		else if( total_bars_health <= 2)
+			tamagotchi_set_emotion(ANGRY);
+		else if((total_bars_happiness <= 3) && (total_bars_health <= 3))
+			tamagotchi_set_emotion(SAD);
+		else if( total_bars_happiness <= 4)
+			tamagotchi_set_emotion(DISSAPOINTMENT);
+		break;
 		game_state = main_menu;
 		break;
 	case music_menu:
 		game_state = main_menu;
+		if((total_bars_happiness >= 6) && (total_bars_health >= 6))
+			tamagotchi_set_emotion(HAPPY);
+		else if((total_bars_happiness <= 1) && (total_bars_health <= 1))
+			tamagotchi_set_emotion(DYING);
+		else if( total_bars_health <= 2)
+			tamagotchi_set_emotion(ANGRY);
+		else if((total_bars_happiness <= 3) && (total_bars_health <= 3))
+			tamagotchi_set_emotion(SAD);
+		else if( total_bars_happiness <= 4)
+			tamagotchi_set_emotion(DISSAPOINTMENT);
 		break;
 	case dead_pet:
 		break;

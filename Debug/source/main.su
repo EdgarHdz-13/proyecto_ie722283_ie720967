@@ -1,18 +1,22 @@
-C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1679:22:__NVIC_EnableIRQ	16	static
-C:\Embebidos 2\Tareas\PROYECTO\CMSIS/core_cm4.h:1809:22:__NVIC_SetPriority	16	static
-C:\Embebidos 2\Tareas\PROYECTO\drivers/fsl_common_arm.h:499:24:EnableIRQ	24	static
-../source/main.c:148:5:main	56	static
-../source/main.c:180:6:mahony_angle	32	static
-../source/main.c:204:6:read_sensor	72	static
-../source/main.c:244:6:state_bars_task	32	static
-../source/main.c:266:6:music_task	32	static
-../source/main.c:278:6:initialize	24	static
-../source/main.c:317:6:Tamagotchi_char	32	static
-../source/main.c:359:6:Tamagotchi_deadscene	48	static
-../source/main.c:402:6:print_control_task	56	static
-../source/main.c:444:6:menu_select	8	static
-../source/main.c:475:6:b0_callback	16	static
-../source/main.c:511:6:b1_callback	8	static
-../source/main.c:551:6:b2_callback	8	static
-../source/main.c:574:6:b3_callback	8	static
-../source/main.c:579:6:b4_callback	8	static
+C:\DimensionB\SE II\PROYECTO\CMSIS/core_cm4.h:1679:22:__NVIC_EnableIRQ	16	static
+C:\DimensionB\SE II\PROYECTO\CMSIS/core_cm4.h:1809:22:__NVIC_SetPriority	16	static
+C:\DimensionB\SE II\PROYECTO\drivers/fsl_clock.h:1045:20:CLOCK_SetSimSafeDivs	4	static
+C:\DimensionB\SE II\PROYECTO\drivers/fsl_clock.h:1428:20:CLOCK_SetXtal0Freq	16	static
+C:\DimensionB\SE II\PROYECTO\drivers/fsl_common_arm.h:499:24:EnableIRQ	24	static
+../source/main.c:174:5:main	56	static
+../source/main.c:207:6:mahony_angle	32	static
+../source/main.c:231:6:read_sensor	72	static
+../source/main.c:271:6:state_bars_task	32	static
+../source/main.c:300:6:music_task	32	static
+../source/main.c:312:6:initialize	24	static
+../source/main.c:352:6:Tamagotchi_char	32	static
+../source/main.c:399:6:Tamagotchi_game	24	static
+../source/main.c:464:6:Tamagotchi_deadscene	48	static
+../source/main.c:508:6:print_control_task	80	static
+../source/main.c:558:6:system_clock_120MHz	24	static
+../source/main.c:590:6:menu_select	8	static
+../source/main.c:629:6:b0_callback	16	static
+../source/main.c:670:6:b1_callback	8	static
+../source/main.c:715:6:b2_callback	8	static
+../source/main.c:772:6:b3_callback	8	static
+../source/main.c:777:6:b4_callback	8	static
