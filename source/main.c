@@ -122,6 +122,7 @@ extern const song_t Metroid_title_theme_song;
 
 extern tamagotchi_t Robot_skin;
 extern tamagotchi_t Billotchi_skin;
+extern tamagotchi_t Slime_skin;
 
 extern deadscene_t deadscene_struct;
 
@@ -633,8 +634,13 @@ void b0_callback(void)
 
 		else if(button_selection == 1)
 		{
-			button_selection = 0;
+			button_selection++;
 			tamagotchi_set_pet(Billotchi_skin);
+		}
+		else if(button_selection == 2)
+		{
+			button_selection = 0;
+			tamagotchi_set_pet(Slime_skin);
 		}
 		break;
 	case main_menu:
