@@ -69,7 +69,7 @@
 #define PROM_NUMBER     1
 #define PRINT  (1U << 0UL)
 #define BARS  (1U << 1UL)
-#define MUSIC   (1U << 2UL)
+#define MUSIC_BIT   (1U << 2UL)
 #define CHAR  (1U << 3UL)
 
 #define MCG_IRCLK_DISABLE 0U                   /*!< MCGIRCLK disabled */
@@ -136,6 +136,7 @@ static music_state_t music_state = song1;
 static uint8_t button_selection = 0;
 static uint8_t select_pet_flag = 0;
 static uint8_t flag_pet_actions = 0;
+static uint8_t flag_pet_dies = 0;
 /*
  * @brief   Application entry point.
  */
@@ -183,7 +184,7 @@ int main(void)
  	xTaskCreate(state_bars_task, "BARS", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
 	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
-	//xTaskCreate(Tamagotchi_deadscene, "TAMAGOTCHI DEADSCENE", 100, NULL, 8, NULL);
+	xTaskCreate(Tamagotchi_deadscene, "TAMAGOTCHI DEADSCENE", 100, NULL, 8, NULL);
 
     vTaskStartScheduler();
     while(1)
@@ -273,6 +274,13 @@ void state_bars_task(void *pvParameters)
     	else if (total_bars_health >0)
     		total_bars_health--; //if bars equals zero pet dies
 
+    	if(total_bars_health == 0 || total_bars_health == 0) // flag that says pet died
+		{
+			xSemaphoreGive(xBinarySemDeadscene);
+			flag_pet_dies = 1;
+	    	LCD_nokia_clear();
+			vTaskSuspend(NULL);
+		}
 
         vTaskDelay(pdMS_TO_TICKS(10000));
     }
@@ -282,7 +290,7 @@ void state_bars_task(void *pvParameters)
 void music_task(void *pvParameters)
 {
     uint32_t time = GET_ARGS(pvParameters,uint32_t);
-    const EventBits_t BitToWaitFor = MUSIC;
+    const EventBits_t BitToWaitFor = MUSIC_BIT;
     xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
     while(1)
     {
@@ -327,7 +335,7 @@ void initialize(void *pvParameters)
 
     BMI160_calibrate_gyr_acc(100,TRUE);
 
-    xEventGroupSetBits(init_event,PRINT | BARS | MUSIC | CHAR );
+    xEventGroupSetBits(init_event,PRINT | BARS | MUSIC_BIT | CHAR );
 
     vTaskSuspend(NULL);
 }
@@ -337,6 +345,8 @@ void Tamagotchi_char(void *pvParameters)
     xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
     while(1)
     {
+    	if(flag_pet_dies)
+    		vTaskSuspend(NULL);
     	switch(game_state)
     	{
     	case select_pet:
@@ -364,11 +374,6 @@ void Tamagotchi_char(void *pvParameters)
     		break;
     	}
     	TAMAGOTCHI_FSM_sequency();
-		if(0) // flag that says pet died
-		{
-			xSemaphoreGive(xBinarySemDeadscene);
-			vTaskSuspend(NULL);
-		}
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
@@ -419,19 +424,16 @@ void Tamagotchi_deadscene(void *pvParameters)
 void print_control_task(void *pvParameters)
 {
 	uint8_t select_pet_text[] = "Choose pet";
-	uint8_t select_pet_text_e[] = "           ";
+	uint8_t select_pet_text_e[] = "            ";
 	const EventBits_t BitToWaitFor = PRINT;
 	xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
 
     while(1)
     {
+    	if(flag_pet_dies)
+    		vTaskSuspend(NULL);
 		LCD_nokia_goto_xy(0, 0);
 		LCD_nokia_send_string(select_pet_text_e);
-		if(select_pet_flag != 0)
-		{
-			LCD_nokia_health_bars(total_bars_health);
-			LCD_nokia_happiness_bars(total_bars_happiness);
-		}
 		LCD_nokia_health_bars(total_bars_health);
 		LCD_nokia_happiness_bars(total_bars_happiness);
     	switch(game_state)
@@ -439,6 +441,10 @@ void print_control_task(void *pvParameters)
     	case select_pet:
     		LCD_nokia_goto_xy(0, 0);
     		LCD_nokia_send_string(select_pet_text);
+    		LCD_nokia_goto_xy(0, 5);
+    		LCD_nokia_send_string(select_pet_text_e);
+    		total_bars_happiness = 7;
+    		total_bars_health = 7;
     		break;
     	case main_menu:
     		if(select_pet_flag != 0)
@@ -496,6 +502,8 @@ void menu_select(void)
 	{
 	case food:
 		tamagotchi_set_emotion(EATING);
+		if(total_bars_health<7)
+			total_bars_health++;
 		break;
 	case sleep:
 		tamagotchi_set_emotion(SLEEPING);
@@ -505,6 +513,8 @@ void menu_select(void)
 		break;
 	case play:
 		tamagotchi_set_emotion(FLYING);
+		if(total_bars_happiness<7)
+			total_bars_happiness++;
 		game_state = game_menu;
 		break;
 	case music:
