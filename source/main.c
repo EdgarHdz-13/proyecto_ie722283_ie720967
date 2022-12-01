@@ -33,6 +33,8 @@
  * @brief   Application entry point.
  */
 #include <stdio.h>
+#include "stdlib.h"
+#include "stdint.h"
 #include "board.h"
 #include "peripherals.h"
 #include "pin_mux.h"
@@ -100,7 +102,8 @@ typedef enum
 	song1,
 	song2,
 	song3,
-	song4
+	song4,
+	song5
 }music_state_t;
 
 typedef struct
@@ -138,6 +141,8 @@ static uint8_t button_selection = 0;
 static uint8_t select_pet_flag = 0;
 static uint8_t flag_pet_actions = 0;
 static uint8_t flag_pet_dies = 0;
+static uint8_t flag_game_back = 0;
+static uint8_t flag_game_end = 0;
 /*
  * @brief   Application entry point.
  */
@@ -151,6 +156,7 @@ void system_clock_120MHz(void);
 void print_control_task(void *pvParameters);
 void Tamagotchi_deadscene(void *pvParameters);
 void Tamagotchi_char(void *pvParameters);
+void Tamagotchi_game(void *pvParameters);
 
 void b0_callback(void);
 void b1_callback(void);
@@ -161,7 +167,8 @@ void b4_callback(void);
 void mahony_angle(void *Pvparameters);
 void read_sensor(void *Pvparameters);
 
-
+TaskHandle_t handle_game;
+TaskHandle_t handle_read;
 
 int main(void)
 {
@@ -178,14 +185,15 @@ int main(void)
     xBinarySemDeadscene = xSemaphoreCreateBinary();
 
     xTaskCreate(mahony_angle,"mahony",      200, &parameter, 7,NULL);
-    xTaskCreate(read_sensor, "read",               250, &parameter, 8, NULL);
+    xTaskCreate(read_sensor, "read",               250, &parameter, 8, &handle_read);
 
  	xTaskCreate(initialize, "INIT", 100, NULL, 10, NULL);
  	xTaskCreate(print_control_task, "PRINT", 200, NULL,3, NULL);
  	xTaskCreate(state_bars_task, "BARS", 200, NULL,3, NULL);
 	xTaskCreate(music_task, "MUSIC", 100, (void*)(&time),9, NULL);
-	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 100, NULL, 1, NULL);
+	xTaskCreate(Tamagotchi_char, "TAMAGOTCHI CHAR", 250, &parameter, 1, NULL);
 	xTaskCreate(Tamagotchi_deadscene, "TAMAGOTCHI DEADSCENE", 100, NULL, 8, NULL);
+	xTaskCreate(Tamagotchi_game, "TAMAGOTCHI GAME", 250, &parameter, 2, &handle_game);
 
     vTaskStartScheduler();
     while(1)
@@ -275,7 +283,7 @@ void state_bars_task(void *pvParameters)
     	else if (total_bars_health >0)
     		total_bars_health--; //if bars equals zero pet dies
 
-    	if(total_bars_health == 0 || total_bars_health == 0) // flag that says pet died
+    	if((total_bars_health == 0) || (total_bars_health == 0)) // flag that says pet died
 		{
 			xSemaphoreGive(xBinarySemDeadscene);
 			flag_pet_dies = 1;
@@ -307,7 +315,7 @@ void initialize(void *pvParameters)
     LCD_nokia_init();
     LCD_nokia_clear();
 	MUSIC_initialize();
-	MUSIC_changeSong(Song_of_the_storm_song);
+	MUSIC_changeSong(Aura_Lee_song);
     tamagotchi_set_pet(Billotchi_skin);
 
     GPIO_init();
@@ -337,7 +345,7 @@ void initialize(void *pvParameters)
     BMI160_calibrate_gyr_acc(100,TRUE);
 
     xEventGroupSetBits(init_event,PRINT | BARS | MUSIC_BIT | CHAR );
-
+    vTaskSuspend(handle_read);
     vTaskSuspend(NULL);
 }
 void Tamagotchi_char(void *pvParameters)
@@ -353,6 +361,7 @@ void Tamagotchi_char(void *pvParameters)
     	case select_pet:
     		tamagotchi_clear();
     		tamagotchi_move_center();
+    		TAMAGOTCHI_FSM_sequency();
     		break;
     	case main_menu:
             tamagotchi_clear();
@@ -364,19 +373,86 @@ void Tamagotchi_char(void *pvParameters)
             {
                 tamagotchi_random_move();
             }
+            vTaskSuspend(handle_read);
+            TAMAGOTCHI_FSM_sequency();
     		break;
     	case game_menu:
+    		if(!flag_game_end)
+    			vTaskResume(handle_game);
+			vTaskResume(handle_read);
+
     		break;
     	case music_menu:
             tamagotchi_clear();
             tamagotchi_move_center();
+            TAMAGOTCHI_FSM_sequency();
     		break;
     	case dead_pet:
+    		vTaskSuspend(handle_game);
     		break;
     	}
-    	TAMAGOTCHI_FSM_sequency();
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
+}
+
+void Tamagotchi_game(void *pvParameters)
+{
+	static uint16_t randomx;
+	static uint16_t posx = 0;
+	static uint16_t posy= 0;
+	static uint16_t last_posx= 0;
+	static uint16_t last_posy= 0;
+	static uint16_t pos_tamx = 33;
+
+	mahony_params_t* params = (mahony_params_t*)pvParameters;
+
+	vTaskSuspend(handle_game);
+
+	tamagotchi_clear();
+	tamagotchi_move_center();
+	randomx = 20;
+	vTaskDelay(pdMS_TO_TICKS(1000));
+
+	while(1)
+	{
+		flag_game_end = 0;
+		if(flag_game_back)
+			vTaskSuspend(handle_game);
+		/*    */
+		if((posx >= pos_tamx)&&(posx <= (pos_tamx+16)))
+			//if(posy == 2)
+			{
+				tamagotchi_clear();
+				LCD_nokia_goto_xy(last_posx, last_posy);
+				LCD_nokia_send_char(' ');
+				flag_game_end = 1;
+				vTaskSuspend(handle_game);
+			}
+		tamagotchi_move(pos_tamx, 2);
+		if(params->output.roll < -2 && (pos_tamx<61))
+			pos_tamx+=7;
+		else if(params->output.roll > 2 && (pos_tamx>7))
+			pos_tamx-=7;
+		TAMAGOTCHI_FSM_sequency();
+		/*    */
+		last_posx = posx;
+		last_posy = posy;
+		LCD_nokia_goto_xy(last_posx, last_posy);
+		LCD_nokia_send_char(' ');
+
+		posx = randomx;
+		LCD_nokia_goto_xy(posx, posy);
+		LCD_nokia_send_char('*');
+
+		if(posy<4) posy++;
+		else
+		{
+			posy = 0;
+			randomx= (rand()&40)+20;
+		}
+
+		vTaskDelay(pdMS_TO_TICKS(1000));
+	}
 }
 
 void Tamagotchi_deadscene(void *pvParameters)
@@ -386,6 +462,7 @@ void Tamagotchi_deadscene(void *pvParameters)
     while(1)
     {
         xSemaphoreTake(xBinarySemDeadscene,portMAX_DELAY);
+        vTaskSuspend(handle_game);
         MUSIC_changeSong(Game_over_song);
         tamagotchi_clear();
         tamagotchi_move_center();
@@ -426,6 +503,7 @@ void print_control_task(void *pvParameters)
 {
 	uint8_t select_pet_text[] = "Choose pet";
 	uint8_t select_pet_text_e[] = "            ";
+	uint8_t text[] = "You lose";
 	const EventBits_t BitToWaitFor = PRINT;
 	xEventGroupWaitBits(init_event, BitToWaitFor, pdFALSE, pdFALSE, portMAX_DELAY);
 
@@ -433,6 +511,7 @@ void print_control_task(void *pvParameters)
     {
     	if(flag_pet_dies)
     		vTaskSuspend(NULL);
+    	LCD_nokia_clear();
 		LCD_nokia_goto_xy(0, 0);
 		LCD_nokia_send_string(select_pet_text_e);
 		LCD_nokia_health_bars(total_bars_health);
@@ -453,6 +532,11 @@ void print_control_task(void *pvParameters)
     		LCD_nokia_menu(menu_state);
     		break;
     	case game_menu:
+    		if(flag_game_end)
+    		{
+    			LCD_nokia_goto_xy(10, 2);
+    			LCD_nokia_send_string(text);
+    		}
     		break;
     	case music_menu:
     		LCD_nokia_goto_xy(0, 0);
@@ -461,7 +545,7 @@ void print_control_task(void *pvParameters)
     	case dead_pet:
 			break;
 		}
-    	vTaskDelay(pdMS_TO_TICKS(200));
+    	vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }
 
@@ -503,6 +587,8 @@ void menu_select(void)
 	{
 	case food:
 		tamagotchi_set_emotion(EATING);
+		if(total_bars_health == 7)
+			tamagotchi_set_emotion(NO);
 		if(total_bars_health<7)
 			total_bars_health++;
 		break;
@@ -511,6 +597,8 @@ void menu_select(void)
 		break;
 	case water:
 		tamagotchi_set_emotion(BATH);
+		if(total_bars_happiness<7)
+			total_bars_happiness++;
 		break;
 	case play:
 		tamagotchi_set_emotion(FLYING);
@@ -550,7 +638,7 @@ void b0_callback(void)
 		}
 		break;
 	case main_menu:
-		if(menu_state<restroom)
+		if(menu_state<music)
 			menu_state++;
 		else
 			menu_state = food;
@@ -558,7 +646,7 @@ void b0_callback(void)
 	case game_menu:
 		break;
 	case music_menu:
-		if(music_state < song4)
+		if(music_state < song5)
 			music_state++;
 		else
 			music_state = 0;
@@ -583,6 +671,8 @@ void b1_callback(void)
 		//if menu different from food change state
 		break;
 	case game_menu:
+		flag_game_back = 0;
+		flag_game_end = 0;
 		break;
 	case music_menu:
 		switch(music_state)
@@ -598,6 +688,9 @@ void b1_callback(void)
 			break;
 		case song4:
 			MUSIC_changeSong(Game_over_song);
+			break;
+		case song5:
+			MUSIC_changeSong(Metroid_title_theme_song);
 			break;
 		default:
 			break;
@@ -619,9 +712,22 @@ void b2_callback(void)
 		break;
 	case main_menu:
 		flag_pet_actions = 0;
-		tamagotchi_set_emotion(GENERAL);
+		if((total_bars_happiness >= 6) && (total_bars_health >= 6))
+			tamagotchi_set_emotion(HAPPY);
+		else if((total_bars_happiness <= 1) && (total_bars_health <= 1))
+			tamagotchi_set_emotion(DYING);
+		else if( total_bars_health <= 2)
+			tamagotchi_set_emotion(ANGRY);
+		else if((total_bars_happiness <= 3) && (total_bars_health <= 3))
+			tamagotchi_set_emotion(SAD);
+		else if( total_bars_happiness <= 4)
+			tamagotchi_set_emotion(DISSAPOINTMENT);
+
+
+
 		break;
 	case game_menu:
+		flag_game_back = 1;
 		game_state = main_menu;
 		break;
 	case music_menu:
