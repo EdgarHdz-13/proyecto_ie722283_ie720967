@@ -84,7 +84,11 @@
 #define SIM_PLLFLLSEL_MCGPLLCLK_CLK 1U         /*!< PLLFLL select: MCGPLLCLK clock */
 #define SIM_SDHC_CLK_SEL_OSCERCLK_CLK 2U       /*!< SDHC clock select: OSCERCLK clock */
 #define SIM_TRACE_CLK_SEL_CORE_SYSTEM_CLK 1U   /*!< Trace clock select: Core/system clock */
-#define SIM_USB_CLK_120000000HZ 120000000U     /*!< Input SIM frequency for USB: 120000000Hz */
+#define SIM_USB_CLK_120000000HZ 12000000U     /*!< Input SIM frequency for USB: 120000000Hz */
+
+#define XTAL0_CLK_HZ                         12000000U  /*!< Board xtal0 frequency in Hz */
+#define CORE_CLK_FREQ      CLOCK_GetFreq(kCLOCK_CoreSysClk)
+#define APP_MCGOUTCLK_FREQ 120000000U
 
 typedef enum
 {
@@ -125,6 +129,8 @@ SemaphoreHandle_t g_xSemaphore_mahony = NULL;
 SemaphoreHandle_t xBinarySemDeadscene = NULL;
 EventGroupHandle_t init_event;
 
+mcg_pll_config_t g_pllConfig; /* The Pll config. */
+uint32_t g_frdivValue = 0U;   /* The FRDIV value.*/
 
 static uint16_t total_bars_health = MAX_BAR;
 static uint16_t total_bars_happiness = MAX_BAR;
@@ -136,6 +142,10 @@ static music_state_t music_state = song1;
 static uint8_t button_selection = 0;
 static uint8_t select_pet_flag = 0;
 static uint8_t flag_pet_actions = 0;
+
+
+
+
 /*
  * @brief   Application entry point.
  */
@@ -146,6 +156,7 @@ void state_bars_task(void *pvParameters);
 void initialize(void *pvParameters);
 void menu_select(void);
 void system_clock_120MHz(void);
+void system_clock_60MHz(void);
 void print_control_task(void *pvParameters);
 void Tamagotchi_deadscene(void *pvParameters);
 void Tamagotchi_char(void *pvParameters);
@@ -293,7 +304,7 @@ void music_task(void *pvParameters)
 }
 void initialize(void *pvParameters)
 {
-	//system_clock_120MHz();
+    system_clock_60MHz();
 	SPI_config();
     LCD_nokia_init();
     LCD_nokia_clear();
@@ -488,6 +499,58 @@ void system_clock_120MHz(void)
     CLOCK_SetFbeMode(0, kMCG_Dmx32Default, kMCG_DrsLow, NULL);
     CLOCK_SetPbeMode(kMCG_PllClkSelPll0, &pll0Config);
     CLOCK_SetPeeMode();
+}
+
+void system_clock_60MHz(void)
+{
+    osc_config_t oscConfig;
+    uint32_t sysFreq;
+    sysFreq = CORE_CLK_FREQ / 20U;
+    oscConfig.freq                   = XTAL0_CLK_HZ;
+    oscConfig.capLoad                = 0U;
+    oscConfig.workMode               = kOSC_ModeOscLowPower;
+    oscConfig.oscerConfig.enableMode = kOSC_ErClkEnable;
+
+    CLOCK_InitOsc0(&oscConfig);
+
+    CLOCK_SetXtal0Freq(XTAL0_CLK_HZ);
+    CLOCK_SetSimSafeDivs();
+
+    //APP_GetAvailablePllConfig(&g_pllConfig);
+    g_pllConfig.enableMode = 0U;
+    CLOCK_CalcPllDiv(g_xtal0Freq, APP_MCGOUTCLK_FREQ, &g_pllConfig.prdiv, &g_pllConfig.vdiv);
+    //APP_BootToPeeExample();
+    CLOCK_BootToPeeMode(kMCG_OscselOsc, kMCG_PllClkSelPll0, &g_pllConfig);
+    assert(kMCG_ModePEE == CLOCK_GetMode());
+    //APP_ChangePeeToBlpiExample();
+    /* Quick change PEE ->FBE */
+    CLOCK_ExternalModeToFbeModeQuick();
+    assert(kMCG_ModeFBE == CLOCK_GetMode());
+    /* Change FBE -> FBI*/
+    CLOCK_SetFbiMode(kMCG_Dmx32Default, kMCG_DrsLow, NULL);
+    assert(kMCG_ModeFBI == CLOCK_GetMode());
+    // /* Change FBI -> BLPI */
+    CLOCK_SetLowPowerEnable(true);
+    assert(kMCG_ModeBLPI == CLOCK_GetMode());
+
+
+    /* Change BLPI -> FBI */
+    CLOCK_SetLowPowerEnable(false);
+    assert(kMCG_ModeFBI == CLOCK_GetMode());
+
+    /* Change FBI -> FBE */
+    CLOCK_SetFbeMode(g_frdivValue, kMCG_Dmx32Default, kMCG_DrsLow, NULL);
+    assert(kMCG_ModeFBE == CLOCK_GetMode());
+
+    /* Change FBE -> PBE */
+    CLOCK_SetPbeMode(kMCG_PllClkSelPll0, &g_pllConfig);
+    assert(kMCG_ModePBE == CLOCK_GetMode());
+
+    /* Change PBE -> PEE */
+    CLOCK_SetPeeMode();
+    assert(kMCG_ModePEE == CLOCK_GetMode());
+
+    sysFreq = CORE_CLK_FREQ / 20U;
 }
 
 void menu_select(void)
